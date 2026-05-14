@@ -3,786 +3,1032 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trident Energy — Learning &amp; Development Portal</title>
+<title>Trident Energy — L&D Portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --te-navy:       #0B2748;
-  --te-navy-mid:   #0e3260;
-  --te-navy-dark:  #071c34;
-  --te-teal:       #00A99D;
-  --te-teal-dark:  #008a7f;
-  --te-teal-light: #e0f6f5;
-  --te-teal-text:  #006b63;
-  --surface:       #f4f6f9;
-  --border:        #d8dce6;
-  --border-light:  #e8ebf2;
-  --text:          #0f1923;
-  --text-2:        #3d4d5c;
-  --text-3:        #8a97a6;
-  --white:         #ffffff;
-  --amber:         #c47d0e;
-  --amber-light:   #fef3dc;
-  --amber-text:    #7a4e07;
-  --blue:          #1a5eb5;
-  --blue-light:    #e3edf9;
-  --blue-text:     #0e3d7a;
-  --red:           #b83232;
-  --red-light:     #fdeaea;
-  --red-text:      #7a1f1f;
-  --purple:        #5b3ea8;
-  --purple-light:  #eeebfc;
-  --purple-text:   #3a2570;
-  --green:         #1e8a55;
-  --green-light:   #e2f5ec;
-  --green-text:    #125c38;
-  --radius:        10px;
-  --radius-lg:     14px;
-  --shadow-sm:     0 1px 3px rgba(0,0,0,0.08);
-  --shadow:        0 4px 14px rgba(0,0,0,0.09);
-  --shadow-lg:     0 12px 32px rgba(0,0,0,0.12);
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#0B2748;--navy-mid:#0e3260;
+  --teal:#00A99D;--teal-dark:#008a7f;--teal-light:#e0f6f5;--teal-text:#006b63;
+  --surface:#f4f6f9;--border:#d8dce6;--border-light:#e8ebf2;
+  --text:#0f1923;--text-2:#3d4d5c;--text-3:#8a97a6;--white:#fff;
+  --amber:#c47d0e;--amber-light:#fef3dc;--amber-text:#7a4e07;
+  --blue:#1a5eb5;--blue-light:#e3edf9;--blue-text:#0e3d7a;
+  --red:#b83232;--red-light:#fdeaea;--red-text:#7a1f1f;
+  --purple:#5b3ea8;--purple-light:#eeebfc;--purple-text:#3a2570;
+  --green:#1e8a55;--green-light:#e2f5ec;--green-text:#125c38;
+  --r:10px;--rl:14px;
+  --s1:0 1px 3px rgba(0,0,0,.08);--s2:0 4px 14px rgba(0,0,0,.09);--s3:0 12px 32px rgba(0,0,0,.12);
 }
+html{font-size:15px;}
+body{font-family:'Open Sans',sans-serif;background:var(--surface);color:var(--text);min-height:100vh;line-height:1.6;}
 
-html { font-size: 15px; }
-body { font-family: 'Open Sans', sans-serif; background: var(--surface); color: var(--text); min-height: 100vh; line-height: 1.6; }
+/* TOPBAR */
+.topbar{background:var(--navy);padding:0 1.75rem;display:flex;align-items:center;height:60px;gap:14px;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--teal);}
+.te-logo{display:flex;flex-direction:column;line-height:1;flex-shrink:0;}
+.te-logo-top{font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;letter-spacing:.18em;color:#fff;}
+.te-logo-rule{height:2px;background:var(--teal);margin:3px 0;border-radius:1px;}
+.te-logo-bot{font-family:'Montserrat',sans-serif;font-weight:400;font-size:9.5px;letter-spacing:.28em;color:rgba(255,255,255,.8);}
+.top-div{width:1px;height:22px;background:rgba(255,255,255,.18);margin:0 8px;}
+.top-product{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.04em;}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+.nb{position:relative;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s;}
+.nb:hover{background:rgba(255,255,255,.16);}
+.nb svg{width:16px;height:16px;stroke:rgba(255,255,255,.8);}
+.nb-badge{position:absolute;top:-3px;right:-3px;width:16px;height:16px;background:var(--teal);border-radius:50%;font-size:9px;color:var(--navy);font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--navy);font-family:'Montserrat',sans-serif;}
+.uchip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px 4px 5px;}
+.av{width:26px;height:26px;border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;}
+.uchip span{font-size:12.5px;color:rgba(255,255,255,.85);}
+.rtag{font-size:10px;font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:rgba(0,169,157,.18);border:1px solid rgba(0,169,157,.35);border-radius:4px;padding:3px 9px;color:var(--teal);cursor:pointer;transition:background .15s;}
+.rtag:hover{background:rgba(0,169,157,.28);}
 
-.topbar {
-  background: var(--te-navy);
-  padding: 0 2rem;
-  display: flex; align-items: center;
-  height: 62px; gap: 14px;
-  position: sticky; top: 0; z-index: 100;
-  border-bottom: 3px solid var(--te-teal);
-}
-.logo-wordmark { display: flex; flex-direction: column; line-height: 1.15; }
-.logo-wordmark-top { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; }
-.logo-wordmark-bottom { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--te-teal); }
-.topbar-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.18); margin: 0 6px; }
-.topbar-product { font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.05em; }
-.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
-.notif-btn {
-  position: relative;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-  width: 36px; height: 36px; border-radius: 50%;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s;
-}
-.notif-btn:hover { background: rgba(255,255,255,0.15); }
-.notif-btn svg { width: 17px; height: 17px; stroke: rgba(255,255,255,0.8); }
-.notif-badge {
-  position: absolute; top: -3px; right: -3px;
-  width: 17px; height: 17px;
-  background: var(--te-teal); border-radius: 50%;
-  font-size: 9px; color: var(--te-navy); font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  border: 2px solid var(--te-navy);
-  font-family: 'Montserrat', sans-serif;
-}
-.user-chip {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 22px; padding: 5px 12px 5px 6px;
-}
-.avatar {
-  width: 26px; height: 26px; border-radius: 50%;
-  background: var(--te-teal);
-  font-size: 10px; font-weight: 700; color: var(--te-navy);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Montserrat', sans-serif;
-}
-.user-chip span { font-size: 12.5px; color: rgba(255,255,255,0.85); }
-.role-tag {
-  font-size: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
-  letter-spacing: 0.05em; text-transform: uppercase;
-  background: rgba(0,169,157,0.18); border: 1px solid rgba(0,169,157,0.35);
-  border-radius: 4px; padding: 3px 9px; color: var(--te-teal);
-  cursor: pointer; transition: background 0.15s;
-}
-.role-tag:hover { background: rgba(0,169,157,0.28); }
+/* LAYOUT */
+.layout{display:flex;min-height:calc(100vh - 60px);}
 
-.layout { display: flex; min-height: calc(100vh - 62px); }
+/* SIDEBAR */
+.sidebar{width:220px;flex-shrink:0;background:var(--white);border-right:1px solid var(--border-light);position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+.sb-header{padding:1rem 1rem .75rem;border-bottom:1px solid var(--border-light);margin-bottom:.75rem;}
+.sb-role-pill{display:flex;align-items:center;gap:8px;background:var(--navy);border-radius:8px;padding:8px 10px;}
+.sb-role-av{width:28px;height:28px;border-radius:50%;font-size:10px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;flex-shrink:0;}
+.sb-role-info strong{display:block;font-size:12.5px;color:#fff;font-family:'Montserrat',sans-serif;font-weight:600;}
+.sb-role-info span{font-size:10.5px;color:rgba(255,255,255,.6);}
+.sb-sec{padding:0 .75rem;margin-bottom:1.25rem;}
+.sb-label{font-size:10px;font-weight:700;color:var(--text-3);letter-spacing:.09em;text-transform:uppercase;padding:0 .35rem;margin-bottom:5px;font-family:'Montserrat',sans-serif;}
+.sl{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:8px;font-size:13px;color:var(--text-2);cursor:pointer;transition:all .12s;border:none;background:none;width:100%;text-align:left;font-family:'Open Sans',sans-serif;}
+.sl:hover{background:var(--surface);color:var(--text);}
+.sl.active{background:var(--teal-light);color:var(--teal-text);font-weight:600;}
+.sl svg{width:15px;height:15px;flex-shrink:0;}
+.sc{margin-left:auto;font-size:10px;font-weight:700;border-radius:10px;padding:1px 7px;min-width:18px;text-align:center;font-family:'Montserrat',sans-serif;}
+.sc.navy{background:var(--navy);color:#fff;}
+.sc.teal{background:var(--teal);color:var(--navy);}
+.sc.amber{background:var(--amber);color:#fff;}
+.sc.red{background:#ef4444;color:#fff;}
 
-.sidebar {
-  width: 225px; flex-shrink: 0;
-  background: var(--white); border-right: 1px solid var(--border-light);
-  padding: 1.5rem 0;
-  position: sticky; top: 62px;
-  height: calc(100vh - 62px); overflow-y: auto;
-}
-.sidebar-brand-strip {
-  margin: 0 1rem 1.25rem;
-  padding: 10px 12px;
-  background: var(--te-navy); border-radius: var(--radius);
-  display: flex; align-items: center; gap: 10px;
-}
-.sb-icon { width: 28px; height: 28px; background: rgba(0,169,157,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-.sb-icon svg { width: 14px; height: 14px; }
-.sb-text { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.4; }
-.sb-text strong { display: block; color: #fff; font-size: 12px; font-weight: 600; font-family: 'Montserrat', sans-serif; }
-.sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
-.sidebar-label {
-  font-size: 10px; font-weight: 700; color: var(--text-3);
-  letter-spacing: 0.09em; text-transform: uppercase;
-  padding: 0 0.5rem; margin-bottom: 6px;
-  font-family: 'Montserrat', sans-serif;
-}
-.sidebar-link {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 10px; border-radius: 8px;
-  font-size: 13.5px; color: var(--text-2);
-  cursor: pointer; transition: all 0.12s;
-  border: none; background: none; width: 100%; text-align: left;
-  font-family: 'Open Sans', sans-serif;
-}
-.sidebar-link:hover { background: var(--surface); color: var(--text); }
-.sidebar-link.active { background: var(--te-teal-light); color: var(--te-teal-text); font-weight: 600; }
-.sidebar-link svg { width: 16px; height: 16px; flex-shrink: 0; }
-.sidebar-count {
-  margin-left: auto; background: var(--te-navy); color: #fff;
-  font-size: 10px; font-weight: 700; border-radius: 10px;
-  padding: 1px 7px; min-width: 20px; text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
-.sidebar-count.teal { background: var(--te-teal); color: var(--te-navy); }
-.sidebar-count.amber { background: var(--amber); }
-.sidebar-count.red { background: #ef4444; }
+/* MAIN */
+.main{flex:1;padding:1.75rem 2.25rem;max-width:900px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.view{display:none;animation:fadeUp .25s ease both;}
+.view.active{display:block;}
 
-.main { flex: 1; padding: 2rem 2.5rem; max-width: 840px; }
-.page-header { margin-bottom: 1.75rem; animation: fadeUp 0.3s ease both; }
-.page-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--te-teal); margin-bottom: 5px; }
-.page-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: var(--te-navy); margin-bottom: 5px; letter-spacing: -0.01em; }
-.page-sub { font-size: 13.5px; color: var(--text-2); }
+/* HEADERS */
+.ph{margin-bottom:1.5rem;}
+.ph-eye{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:4px;}
+.ph-title{font-family:'Montserrat',sans-serif;font-size:21px;font-weight:700;color:var(--navy);margin-bottom:4px;letter-spacing:-.01em;}
+.ph-sub{font-size:13px;color:var(--text-2);}
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--rl);padding:1.25rem 1.5rem;box-shadow:var(--s1);}
+.card+.card{margin-top:10px;}
+.card-top-accent{border-top:3px solid var(--teal);}
 
-.view { display: none; animation: fadeUp 0.25s ease both; }
-.view.active { display: block; }
+/* STAT GRIDS */
+.sg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem;}
+.sg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem;}
+.sg4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.25rem;}
+.stat{background:var(--white);border:1px solid var(--border-light);border-radius:var(--rl);padding:1.1rem 1.25rem;box-shadow:var(--s1);border-top:3px solid var(--teal);}
+.stat-icon{width:32px;height:32px;background:var(--teal-light);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.stat-icon svg{width:16px;height:16px;stroke:var(--teal);}
+.stat-val{font-size:26px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:3px;font-family:'Montserrat',sans-serif;}
+.stat-lbl{font-size:12px;color:var(--text-2);font-weight:600;font-family:'Montserrat',sans-serif;}
+.stat-sub{font-size:11px;color:var(--text-3);margin-top:2px;}
 
-.form-card {
-  background: var(--white); border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg); padding: 1.75rem;
-  box-shadow: var(--shadow-sm); margin-bottom: 1rem;
-}
-.form-section-title {
-  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--te-navy);
-  margin-bottom: 1rem; padding-bottom: 8px;
-  border-bottom: 2px solid var(--te-teal-light);
-  display: flex; align-items: center; gap: 8px;
-}
-.form-section-title::before { content:''; display:inline-block; width:3px; height:14px; background:var(--te-teal); border-radius:2px; }
-.field { margin-bottom: 1.1rem; }
-.field:last-child { margin-bottom: 0; }
-label { display: block; font-size: 12.5px; font-weight: 600; color: var(--text-2); margin-bottom: 5px; font-family: 'Montserrat', sans-serif; }
-label .req { color: var(--te-teal); margin-left: 2px; }
-input[type=text], input[type=email], input[type=number], select, textarea {
-  width: 100%; padding: 9px 12px;
-  font-family: 'Open Sans', sans-serif; font-size: 14px;
-  border: 1.5px solid var(--border); border-radius: var(--radius);
-  background: var(--white); color: var(--text); outline: none;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-input:focus, select:focus, textarea:focus { border-color: var(--te-teal); box-shadow: 0 0 0 3px rgba(0,169,157,0.12); }
-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
-.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+/* SECTION TITLE */
+.sec-title{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:.9rem;display:flex;align-items:center;gap:7px;}
+.sec-title::before{content:'';display:inline-block;width:3px;height:13px;background:var(--teal);border-radius:2px;}
 
-.btn-row { display: flex; gap: 10px; margin-top: 1.5rem; align-items: center; flex-wrap: wrap; }
-.btn {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 10px 22px; border-radius: var(--radius);
-  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
-  letter-spacing: 0.03em; cursor: pointer; border: none; transition: all 0.15s;
-}
-.btn svg { width: 15px; height: 15px; }
-.btn-primary { background: var(--te-teal); color: var(--te-navy); }
-.btn-primary:hover { background: var(--te-teal-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,169,157,0.3); }
-.btn-ghost { background: var(--white); color: var(--text-2); border: 1.5px solid var(--border); font-weight: 500; font-size: 13.5px; }
-.btn-ghost:hover { background: var(--surface); }
-.btn-approve { background: var(--green); color: #fff; }
-.btn-approve:hover { background: var(--green-text); }
-.btn-decline { background: var(--white); color: var(--text-2); border: 1.5px solid var(--border); font-size: 13.5px; font-weight: 500; }
-.btn-decline:hover { background: var(--red-light); color: var(--red-text); border-color: #f5b8b8; }
-.btn-sm { padding: 7px 15px; font-size: 12px; }
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;font-family:'Montserrat',sans-serif;}
+.b-pending{background:var(--amber-light);color:var(--amber-text);}
+.b-mgr{background:var(--blue-light);color:var(--blue-text);}
+.b-hr{background:var(--purple-light);color:var(--purple-text);}
+.b-ok{background:var(--teal-light);color:var(--teal-text);}
+.b-done{background:var(--green-light);color:var(--green-text);}
+.b-no{background:var(--red-light);color:var(--red-text);}
 
-.toast-area { position: fixed; top: 76px; right: 1.5rem; z-index: 999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
-.toast {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: var(--radius-lg); padding: 14px 18px;
-  box-shadow: var(--shadow-lg);
-  display: flex; align-items: flex-start; gap: 12px;
-  max-width: 330px; pointer-events: all;
-  animation: slideIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
-  border-left: 3px solid var(--te-teal);
-}
-.toast.warn { border-left-color: var(--amber); }
-.toast.info { border-left-color: var(--blue); }
-@keyframes slideIn { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
-@keyframes slideOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(20px); } }
-.toast-icon svg { width: 18px; height: 18px; }
-.toast-body { font-size: 13px; line-height: 1.5; }
-.toast-title { font-weight: 700; color: var(--te-navy); margin-bottom: 2px; font-family: 'Montserrat', sans-serif; font-size: 12.5px; }
-.toast-msg { color: var(--text-2); }
+/* TIMELINE / PROGRESS */
+.progress-steps{display:flex;align-items:flex-start;margin:12px 0 6px;}
+.ps{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;}
+.ps::after{content:'';position:absolute;top:12px;left:50%;width:100%;height:2px;background:var(--border);z-index:0;}
+.ps:last-child::after{display:none;}
+.ps.done::after{background:var(--teal);}
+.pd{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--text-3);position:relative;z-index:1;font-family:'Montserrat',sans-serif;}
+.pd.done{background:var(--teal);border-color:var(--teal);color:var(--navy);}
+.pd.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+.pl{font-size:10px;color:var(--text-3);margin-top:5px;text-align:center;font-family:'Montserrat',sans-serif;}
+.pl.done{color:var(--teal-text);font-weight:600;}
+.pl.active{color:var(--navy);font-weight:700;}
 
-.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 700; white-space: nowrap; font-family: 'Montserrat', sans-serif; }
-.badge-pending  { background: var(--amber-light);  color: var(--amber-text); }
-.badge-mgr      { background: var(--blue-light);   color: var(--blue-text); }
-.badge-hr       { background: var(--purple-light);  color: var(--purple-text); }
-.badge-approved { background: var(--te-teal-light); color: var(--te-teal-text); }
-.badge-done     { background: var(--green-light);   color: var(--green-text); }
-.badge-declined { background: var(--red-light);     color: var(--red-text); }
+/* FORM */
+.form-card{background:var(--white);border:1px solid var(--border-light);border-radius:var(--rl);padding:1.5rem;box-shadow:var(--s1);margin-bottom:1rem;}
+.fst{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:.9rem;padding-bottom:8px;border-bottom:2px solid var(--teal-light);display:flex;align-items:center;gap:7px;}
+.fst::before{content:'';display:inline-block;width:3px;height:13px;background:var(--teal);border-radius:2px;}
+.field{margin-bottom:.95rem;}
+.field:last-child{margin-bottom:0;}
+label{display:block;font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:4px;font-family:'Montserrat',sans-serif;}
+label .req{color:var(--teal);}
+input,select,textarea{width:100%;padding:8px 11px;font-family:'Open Sans',sans-serif;font-size:13.5px;border:1.5px solid var(--border);border-radius:var(--r);background:var(--white);color:var(--text);outline:none;transition:border-color .15s,box-shadow .15s;}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,169,157,.1);}
+textarea{resize:vertical;min-height:72px;line-height:1.6;}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
 
-.req-card {
-  background: var(--white); border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg); padding: 1.25rem 1.5rem;
-  margin-bottom: 12px; box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.15s; border-top: 3px solid var(--te-teal);
-}
-.req-card:hover { box-shadow: var(--shadow); }
-.req-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
-.req-card-title { font-size: 15px; font-weight: 600; color: var(--te-navy); font-family: 'Montserrat', sans-serif; }
-.req-card-meta { font-size: 12.5px; color: var(--text-2); margin-top: 3px; }
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border-radius:var(--r);font-family:'Montserrat',sans-serif;font-size:12.5px;font-weight:700;cursor:pointer;border:none;transition:all .15s;}
+.btn svg{width:14px;height:14px;}
+.btn-primary{background:var(--teal);color:var(--navy);}
+.btn-primary:hover{background:var(--teal-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,169,157,.3);}
+.btn-ghost{background:var(--white);color:var(--text-2);border:1.5px solid var(--border);font-weight:500;}
+.btn-ghost:hover{background:var(--surface);}
+.btn-approve{background:var(--green);color:#fff;}
+.btn-approve:hover{background:var(--green-text);}
+.btn-decline{background:var(--white);color:var(--text-2);border:1.5px solid var(--border);}
+.btn-decline:hover{background:var(--red-light);color:var(--red-text);border-color:#f5b8b8;}
+.btn-sm{padding:6px 13px;font-size:11.5px;}
+.btn-row{display:flex;gap:9px;margin-top:1.25rem;align-items:center;flex-wrap:wrap;}
 
-.progress-wrap { margin: 14px 0; }
-.progress-steps { display: flex; align-items: flex-start; }
-.prog-step { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
-.prog-step::after { content:''; position:absolute; top:13px; left:50%; width:100%; height:2px; background:var(--border); z-index:0; }
-.prog-step:last-child::after { display: none; }
-.prog-dot {
-  width: 26px; height: 26px; border-radius: 50%;
-  border: 2px solid var(--border); background: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: var(--text-3);
-  position: relative; z-index: 1; transition: all 0.25s;
-  font-family: 'Montserrat', sans-serif;
-}
-.prog-dot.done { background: var(--te-teal); border-color: var(--te-teal); color: var(--te-navy); }
-.prog-dot.active { background: var(--te-navy); border-color: var(--te-navy); color: #fff; }
-.prog-step.done::after { background: var(--te-teal); }
-.prog-step-label { font-size: 10.5px; color: var(--text-3); margin-top: 7px; text-align: center; font-family: 'Montserrat', sans-serif; }
-.prog-step-label.done { color: var(--te-teal-text); font-weight: 600; }
-.prog-step-label.active { color: var(--te-navy); font-weight: 700; }
+/* TABLES */
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{text-align:left;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);padding:9px 13px;border-bottom:2px solid var(--teal);background:var(--surface);font-family:'Montserrat',sans-serif;}
+.tbl td{padding:11px 13px;font-size:13px;border-bottom:1px solid var(--border-light);color:var(--text);}
+.tbl tr:hover td{background:var(--teal-light);}
+.tbl td.m{color:var(--text-2);}
 
-.detail-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 10px; }
-.detail-item { font-size: 13px; }
-.detail-label { color: var(--text-3); margin-right: 4px; }
-.detail-val { color: var(--te-navy); font-weight: 600; }
-.action-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-light); }
-.action-spacer { flex: 1; }
-.action-time { font-size: 12px; color: var(--text-3); }
-.quote-block { font-size: 13.5px; color: var(--text-2); background: var(--surface); border-radius: 8px; padding: 10px 14px; margin-top: 4px; line-height: 1.7; border-left: 3px solid var(--te-teal); }
+/* QUEUE CARDS (approval) */
+.qcard{background:var(--white);border:1px solid var(--border-light);border-top:3px solid var(--teal);border-radius:var(--rl);padding:1.2rem 1.4rem;margin-bottom:10px;box-shadow:var(--s1);transition:box-shadow .15s;}
+.qcard:hover{box-shadow:var(--s2);}
+.qcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px;}
+.qcard-title{font-size:14.5px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;}
+.qcard-meta{font-size:12px;color:var(--text-2);margin-top:2px;}
+.qcard-details{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:8px;}
+.qd{font-size:12.5px;}<br>.qd .ql{color:var(--text-3);margin-right:3px;}
+.qd .qv{color:var(--navy);font-weight:600;}
+.quote{font-size:13px;color:var(--text-2);background:var(--surface);border-radius:7px;padding:9px 12px;line-height:1.65;border-left:3px solid var(--teal);margin-bottom:0;}
+.act-row{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border-light);}
 
-.notif-item { display: flex; gap: 14px; padding: 1rem 1.25rem; background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); margin-bottom: 8px; box-shadow: var(--shadow-sm); }
-.notif-item.unread { border-left: 3px solid var(--te-teal); }
-.notif-dot-indicator { width: 9px; height: 9px; border-radius: 50%; background: var(--te-teal); flex-shrink: 0; margin-top: 6px; }
-.notif-dot-indicator.read { background: var(--border); }
-.notif-content { flex: 1; }
-.notif-title { font-size: 13.5px; font-weight: 700; color: var(--te-navy); margin-bottom: 3px; font-family: 'Montserrat', sans-serif; }
-.notif-body { font-size: 13px; color: var(--text-2); line-height: 1.5; }
-.notif-time { font-size: 11.5px; color: var(--text-3); margin-top: 4px; }
+/* ACTIVITY FEED */
+.feed-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-light);}
+.feed-item:last-child{border-bottom:none;}
+.feed-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px;}
+.feed-dot.amber{background:var(--amber);}
+.feed-dot.grey{background:var(--border);}
+.feed-body{font-size:13px;color:var(--text-2);line-height:1.5;}
+.feed-time{font-size:11px;color:var(--text-3);margin-top:2px;}
 
-.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
-.stat-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.25rem; box-shadow: var(--shadow-sm); border-top: 3px solid var(--te-teal); }
-.stat-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--te-teal-light); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
-.stat-icon svg { width: 18px; height: 18px; stroke: var(--te-teal); }
-.stat-val { font-size: 27px; font-weight: 700; color: var(--te-navy); line-height: 1; margin-bottom: 4px; font-family: 'Montserrat', sans-serif; }
-.stat-label { font-size: 12.5px; color: var(--text-2); font-weight: 600; font-family: 'Montserrat', sans-serif; }
-.stat-sub { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
+/* BUDGET BAR */
+.budget-track{background:var(--surface);border-radius:4px;height:8px;overflow:hidden;margin:6px 0;}
+.budget-fill{height:100%;background:var(--teal);border-radius:4px;transition:width .4s ease;}
+.budget-fill.warn{background:var(--amber);}
+.budget-fill.over{background:var(--red);}
 
-.report-table { width: 100%; border-collapse: collapse; }
-.report-table th { text-align: left; font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--te-navy); padding: 10px 14px; border-bottom: 2px solid var(--te-teal); background: var(--surface); font-family: 'Montserrat', sans-serif; }
-.report-table td { padding: 12px 14px; font-size: 13.5px; border-bottom: 1px solid var(--border-light); color: var(--text); }
-.report-table tr:hover td { background: var(--te-teal-light); }
-.report-table td.muted { color: var(--text-2); }
+/* PERSON ROW */
+.person-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-light);}
+.person-row:last-child{border-bottom:none;}
+.pav{width:32px;height:32px;border-radius:50%;background:var(--teal-light);color:var(--teal-text);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Montserrat',sans-serif;}
+.pname{font-size:13.5px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;}
+.prole{font-size:11.5px;color:var(--text-3);}
+.pright{margin-left:auto;text-align:right;}
+.pamt{font-size:13.5px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;}
+.psub{font-size:11px;color:var(--text-3);}
 
-.empty-state { text-align: center; padding: 3rem 2rem; color: var(--text-3); }
-.empty-state svg { width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.4; }
-.empty-state p { font-size: 14px; }
+/* NOTIF */
+.ni{display:flex;gap:12px;padding:.9rem 1.2rem;background:var(--white);border:1px solid var(--border-light);border-radius:var(--rl);margin-bottom:8px;box-shadow:var(--s1);}
+.ni.unread{border-left:3px solid var(--teal);}
+.nidot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:6px;}
+.nidot.read{background:var(--border);}
+.ni-title{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px;font-family:'Montserrat',sans-serif;}
+.ni-body{font-size:12.5px;color:var(--text-2);line-height:1.5;}
+.ni-time{font-size:11px;color:var(--text-3);margin-top:3px;}
 
-.role-switcher { display: none; position: fixed; top: 62px; right: 0; background: var(--white); border: 1px solid var(--border); border-radius: 0 0 0 var(--radius-lg); box-shadow: var(--shadow-lg); z-index: 200; overflow: hidden; animation: fadeUp 0.15s ease both; min-width: 220px; }
-.role-switcher.open { display: block; }
-.role-switcher-header { padding: 10px 16px 8px; background: var(--te-navy); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-.role-option { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; transition: background 0.12s; border: none; background: none; width: 100%; text-align: left; border-bottom: 1px solid var(--border-light); }
-.role-option:last-child { border-bottom: none; }
-.role-option:hover { background: var(--surface); }
-.role-option.current { background: var(--te-teal-light); }
-.role-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; font-family: 'Montserrat', sans-serif; }
-.role-option-name { font-size: 13.5px; font-weight: 600; color: var(--te-navy); font-family: 'Montserrat', sans-serif; }
-.role-option-role { font-size: 12px; color: var(--text-2); }
+/* EMPTY */
+.empty{text-align:center;padding:2.5rem 2rem;color:var(--text-3);}
+.empty svg{width:36px;height:36px;margin-bottom:10px;opacity:.35;}
+.empty p{font-size:13.5px;}
 
-@media (max-width: 700px) {
-  .sidebar { display: none; }
-  .main { padding: 1.25rem; }
-  .row2, .row3 { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
-}
+/* TOAST */
+.toast-area{position:fixed;top:72px;right:1.5rem;z-index:999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+.toast{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:var(--rl);padding:13px 16px;box-shadow:var(--s3);display:flex;align-items:flex-start;gap:11px;max-width:310px;pointer-events:all;animation:tIn .3s cubic-bezier(.16,1,.3,1) both;}
+.toast.warn{border-left-color:var(--amber);}
+.toast.info{border-left-color:var(--blue);}
+@keyframes tIn{from{opacity:0;transform:translateX(16px);}to{opacity:1;transform:translateX(0);}}
+@keyframes tOut{from{opacity:1;transform:translateX(0);}to{opacity:0;transform:translateX(16px);}}
+.toast-title{font-size:12px;font-weight:700;color:var(--navy);font-family:'Montserrat',sans-serif;margin-bottom:2px;}
+.toast-msg{font-size:12.5px;color:var(--text-2);}
+
+/* ROLE SWITCHER */
+.rs{display:none;position:fixed;top:60px;right:0;background:var(--white);border:1px solid var(--border);border-radius:0 0 0 var(--rl);box-shadow:var(--s3);z-index:200;min-width:210px;animation:fadeUp .15s ease both;}
+.rs.open{display:block;}
+.rs-head{padding:9px 15px 7px;background:var(--navy);font-family:'Montserrat',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);}
+.ro{display:flex;align-items:center;gap:11px;padding:11px 15px;cursor:pointer;transition:background .12s;border:none;background:none;width:100%;text-align:left;border-bottom:1px solid var(--border-light);}
+.ro:last-child{border-bottom:none;}
+.ro:hover{background:var(--surface);}
+.ro.cur{background:var(--teal-light);}
+.ro-av{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:'Montserrat',sans-serif;}
+.ro-name{font-size:13px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;}
+.ro-role{font-size:11.5px;color:var(--text-2);}
+
+@media(max-width:700px){.sidebar{display:none;}.main{padding:1.2rem;}.r2,.r3{grid-template-columns:1fr;}.sg2,.sg3,.sg4{grid-template-columns:1fr 1fr;}}
 </style>
 </head>
 <body>
 
+<!-- TOPBAR -->
 <header class="topbar">
-  <!-- Trident Energy wordmark: TRIDENT / teal rule / ENERGY -->
-  <div style="display:flex;flex-direction:column;line-height:1;gap:0;flex-shrink:0;">
-    <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;letter-spacing:0.18em;text-transform:uppercase;color:#ffffff;display:block;">TRIDENT</span>
-    <div style="height:2.5px;background:var(--te-teal);border-radius:1px;margin:3px 0;width:100%;"></div>
-    <span style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.85);display:block;">ENERGY</span>
+  <div class="te-logo">
+    <span class="te-logo-top">TRIDENT</span>
+    <div class="te-logo-rule"></div>
+    <span class="te-logo-bot">ENERGY</span>
   </div>
-  <div class="topbar-divider"></div>
-  <span class="topbar-product">Learning &amp; Development Portal</span>
+  <div class="top-div"></div>
+  <span class="top-product">Learning &amp; Development Portal</span>
   <div class="topbar-right">
-    <button class="notif-btn" onclick="switchView('notifs'); updateNotifBadge()" title="Notifications">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-      </svg>
-      <span class="notif-badge" id="topbar-notif-badge">1</span>
+    <button class="nb" onclick="switchPage('notifs');updateNBadge()" title="Notifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span class="nb-badge" id="nbadge">2</span>
     </button>
-    <div class="user-chip">
-      <div class="avatar" id="topbar-avatar">SR</div>
-      <span id="topbar-name">Sam Riley</span>
+    <div class="uchip">
+      <div class="av" id="tav" style="background:var(--teal);color:var(--navy);">SR</div>
+      <span id="tname">Sam Riley</span>
     </div>
-    <button class="role-tag" onclick="toggleRoleSwitcher()" id="role-tag-btn">Learner ▾</button>
+    <button class="rtag" onclick="toggleRS()" id="rtag">Learner ▾</button>
   </div>
 </header>
 
-<div class="role-switcher" id="role-switcher">
-  <div class="role-switcher-header">Switch role</div>
-  <button class="role-option current" onclick="switchRole('learner')">
-    <div class="role-avatar" style="background:var(--te-navy);">SR</div>
-    <div><div class="role-option-name">Sam Riley</div><div class="role-option-role">Learner</div></div>
+<!-- ROLE SWITCHER -->
+<div class="rs" id="rs">
+  <div class="rs-head">Switch view</div>
+  <button class="ro cur" onclick="switchRole('learner')">
+    <div class="ro-av" style="background:var(--teal);color:var(--navy);">SR</div>
+    <div><div class="ro-name">Sam Riley</div><div class="ro-role">Learner</div></div>
   </button>
-  <button class="role-option" onclick="switchRole('manager')">
-    <div class="role-avatar" style="background:var(--te-teal);color:var(--te-navy);">JO</div>
-    <div><div class="role-option-name">James Okafor</div><div class="role-option-role">Manager</div></div>
+  <button class="ro" onclick="switchRole('manager')">
+    <div class="ro-av" style="background:var(--navy);color:#fff;">JO</div>
+    <div><div class="ro-name">James Okafor</div><div class="ro-role">Line Manager</div></div>
   </button>
-  <button class="role-option" onclick="switchRole('hr')">
-    <div class="role-avatar" style="background:#5b3ea8;">PN</div>
-    <div><div class="role-option-name">Priya Nair</div><div class="role-option-role">HR Business Partner</div></div>
+  <button class="ro" onclick="switchRole('hr')">
+    <div class="ro-av" style="background:#5b3ea8;color:#fff;">PN</div>
+    <div><div class="ro-name">Priya Nair</div><div class="ro-role">HR Business Partner</div></div>
   </button>
 </div>
 
-<div class="toast-area" id="toast-area"></div>
+<div class="toast-area" id="tarea"></div>
 
 <div class="layout">
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar-brand-strip">
-      <div style="flex:1;">
-        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:0.15em;color:#fff;">TRIDENT</div>
-        <div style="height:1.5px;background:var(--te-teal);margin:2px 0;border-radius:1px;"></div>
-        <div style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:8px;letter-spacing:0.22em;color:rgba(255,255,255,0.7);">ENERGY</div>
-      </div>
-      <div class="sb-text" style="text-align:right;">External course<br>requests</div>
+
+<!-- ═══════════════════════════════ LEARNER SIDEBAR ═══════ -->
+<nav class="sidebar" id="sb-learner">
+  <div class="sb-header">
+    <div class="sb-role-pill">
+      <div class="sb-role-av" style="background:var(--teal);color:var(--navy);">SR</div>
+      <div class="sb-role-info"><strong>Sam Riley</strong><span>Engineer II · Operations</span></div>
     </div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-label">My learning</div>
+    <button class="sl active" onclick="switchPage('l-home')" id="nl-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      My dashboard
+    </button>
+    <button class="sl" onclick="switchPage('l-submit')" id="nl-submit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      New request
+    </button>
+    <button class="sl" onclick="switchPage('notifs')" id="nl-notifs">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      Notifications
+      <span class="sc red" id="n-sc">2</span>
+    </button>
+  </div>
+</nav>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">My learning</div>
-      <button class="sidebar-link active" onclick="switchView('submit')" id="nav-submit">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-        Submit request
-      </button>
-      <button class="sidebar-link" onclick="switchView('myrequests')" id="nav-myrequests">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-        My requests
-      </button>
-      <button class="sidebar-link" onclick="switchView('notifs')" id="nav-notifs">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        Notifications
-        <span class="sidebar-count red" id="notif-sidebar-count">1</span>
-      </button>
+<!-- ═══════════════════════════════ MANAGER SIDEBAR ═══════ -->
+<nav class="sidebar" id="sb-manager" style="display:none;">
+  <div class="sb-header">
+    <div class="sb-role-pill">
+      <div class="sb-role-av" style="background:var(--navy);color:#fff;">JO</div>
+      <div class="sb-role-info"><strong>James Okafor</strong><span>Senior Manager · Operations</span></div>
     </div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-label">Overview</div>
+    <button class="sl active" onclick="switchPage('m-home')" id="nm-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Team dashboard
+    </button>
+    <button class="sl" onclick="switchPage('m-queue')" id="nm-queue">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Pending approvals
+      <span class="sc teal" id="m-q-sc">1</span>
+    </button>
+    <button class="sl" onclick="switchPage('m-team')" id="nm-team">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Team spend
+    </button>
+  </div>
+</nav>
 
-    <div class="sidebar-section" id="approval-section" style="display:none;">
-      <div class="sidebar-label">Approvals</div>
-      <button class="sidebar-link" onclick="switchView('manager')" id="nav-manager">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Manager review
-        <span class="sidebar-count teal" id="mgr-sidebar-count" style="display:none;">1</span>
-      </button>
-      <button class="sidebar-link" onclick="switchView('hr')" id="nav-hr">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        HR approval
-        <span class="sidebar-count amber" id="hr-sidebar-count" style="display:none;">1</span>
-      </button>
+<!-- ═══════════════════════════════ HR SIDEBAR ═══════ -->
+<nav class="sidebar" id="sb-hr" style="display:none;">
+  <div class="sb-header">
+    <div class="sb-role-pill">
+      <div class="sb-role-av" style="background:#5b3ea8;color:#fff;">PN</div>
+      <div class="sb-role-info"><strong>Priya Nair</strong><span>HR Business Partner</span></div>
     </div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-label">HR overview</div>
+    <button class="sl active" onclick="switchPage('hr-home')" id="nhr-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Org dashboard
+    </button>
+    <button class="sl" onclick="switchPage('hr-queue')" id="nhr-queue">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      Final approvals
+      <span class="sc amber" id="hr-q-sc" style="display:none;">1</span>
+    </button>
+    <button class="sl" onclick="switchPage('hr-budget')" id="nhr-budget">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Budget &amp; compliance
+    </button>
+    <button class="sl" onclick="switchPage('hr-report')" id="nhr-report">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Full report
+    </button>
+  </div>
+</nav>
 
-    <div class="sidebar-section">
-      <div class="sidebar-label">Analytics</div>
-      <button class="sidebar-link" onclick="switchView('report')" id="nav-report">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-        Spend report
-      </button>
+<!-- ═══════════════════════════════ MAIN CONTENT ═══════════ -->
+<main class="main">
+
+<!-- ──────────── LEARNER: MY DASHBOARD ──────────── -->
+<div class="view active" id="view-l-home">
+  <div class="ph">
+    <div class="ph-eye">My learning</div>
+    <div class="ph-title">Good morning, Sam</div>
+    <div class="ph-sub">Track your external course requests and approved learning below.</div>
+  </div>
+  <div class="sg3">
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+      <div class="stat-val">1</div>
+      <div class="stat-lbl">Request in progress</div>
+      <div class="stat-sub">Awaiting manager review</div>
     </div>
-  </nav>
-
-  <main class="main">
-
-    <div class="view active" id="view-submit">
-      <div class="page-header">
-        <div class="page-eyebrow">Learning &amp; Development</div>
-        <div class="page-title">Request an external course</div>
-        <div class="page-sub">Submit a course for manager and HR approval. Once approved, costs are reimbursed or invoiced to the L&amp;D budget.</div>
-      </div>
-      <div class="form-card">
-        <div class="form-section-title">Course details</div>
-        <div class="field"><label>Course name <span class="req">*</span></label><input type="text" id="f-course" placeholder="e.g. AWS Solutions Architect — Associate"></div>
-        <div class="row2">
-          <div class="field"><label>Provider / platform <span class="req">*</span></label><input type="text" id="f-provider" placeholder="e.g. Coursera, BCS, Udemy"></div>
-          <div class="field"><label>Course URL</label><input type="text" id="f-url" placeholder="https://..."></div>
-        </div>
-        <div class="row3">
-          <div class="field"><label>Cost (£) <span class="req">*</span></label><input type="number" id="f-cost" placeholder="495" min="0"></div>
-          <div class="field"><label>Start date</label><input type="text" id="f-start" placeholder="01 Jul 2026"></div>
-          <div class="field"><label>Duration</label><input type="text" id="f-duration" placeholder="3 days / 40 hrs"></div>
-        </div>
-        <div class="field"><label>Delivery format</label>
-          <select id="f-delivery"><option>Online — self-paced</option><option>Online — instructor-led</option><option>In-person</option><option>Blended</option></select>
-        </div>
-      </div>
-      <div class="form-card">
-        <div class="form-section-title">Business justification</div>
-        <div class="field"><label>How does this course support your role and team goals? <span class="req">*</span></label><textarea id="f-justification" placeholder="Describe the business case — skills gap, upcoming project, certification required..."></textarea></div>
-        <div class="field"><label>Expected outcome after completion</label><input type="text" id="f-outcome" placeholder="e.g. Achieve AWS certification by Q3, support cloud migration project"></div>
-        <div class="field"><label>Will you share learning with the team?</label>
-          <select id="f-share"><option>Yes — lunch and learn session</option><option>Yes — written summary / notes</option><option>No — individual role requirement</option></select>
-        </div>
-        <div class="btn-row">
-          <button class="btn btn-primary" onclick="submitRequest()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Submit for approval
-          </button>
-          <button class="btn btn-ghost" onclick="prefill()">Demo prefill</button>
-        </div>
-      </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="stat-val" id="l-approved-count">0</div>
+      <div class="stat-lbl">Approved this year</div>
+      <div class="stat-sub">Courses confirmed</div>
     </div>
-
-    <div class="view" id="view-myrequests">
-      <div class="page-header">
-        <div class="page-eyebrow">My learning</div>
-        <div class="page-title">My requests</div>
-        <div class="page-sub">Track the status of your submitted course requests.</div>
-      </div>
-      <div id="my-requests-list">
-        <div class="empty-state" id="my-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-          <p>No requests yet. Submit a course to get started.</p>
-        </div>
-      </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="stat-val" id="l-spent">£0</div>
+      <div class="stat-lbl">Budget used</div>
+      <div class="stat-sub">of £1,500 personal allowance</div>
     </div>
+  </div>
 
-    <div class="view" id="view-manager">
-      <div class="page-header">
-        <div class="page-eyebrow">Approvals</div>
-        <div class="page-title">Manager review</div>
-        <div class="page-sub">Course requests from your team awaiting your decision before escalation to HR.</div>
+  <div class="card card-top-accent" style="margin-bottom:1rem;">
+    <div class="sec-title">My current request</div>
+    <div id="l-current-req">
+      <div style="font-size:14.5px;font-weight:600;color:var(--navy);font-family:'Montserrat',sans-serif;margin-bottom:4px;">AWS Solutions Architect — Associate</div>
+      <div style="font-size:12.5px;color:var(--text-2);margin-bottom:12px;">Coursera &nbsp;·&nbsp; £495 &nbsp;·&nbsp; 01 Jul 2026</div>
+      <div class="progress-steps" id="l-progress">
+        <div class="ps done"><div class="pd done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" width="10" height="10"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pl done">Submitted</div></div>
+        <div class="ps active"><div class="pd active">2</div><div class="pl active">Manager</div></div>
+        <div class="ps"><div class="pd">3</div><div class="pl">HR</div></div>
+        <div class="ps"><div class="pd">4</div><div class="pl">Confirmed</div></div>
       </div>
-      <div id="mgr-list">
-        <div class="empty-state" id="mgr-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <p>No pending requests for your review.</p>
-        </div>
-      </div>
+      <div style="font-size:12.5px;color:var(--amber-text);background:var(--amber-light);border-radius:7px;padding:8px 12px;margin-top:4px;" id="l-status-msg">Awaiting review from James Okafor (Manager). You will be notified once a decision is made.</div>
     </div>
+  </div>
 
-    <div class="view" id="view-hr">
-      <div class="page-header">
-        <div class="page-eyebrow">Approvals</div>
-        <div class="page-title">HR final approval</div>
-        <div class="page-sub">Manager-approved requests awaiting HR sign-off and budget confirmation.</div>
-      </div>
-      <div id="hr-list">
-        <div class="empty-state" id="hr-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          <p>No requests pending HR review.</p>
-        </div>
-      </div>
+  <div class="card">
+    <div class="sec-title">Previously approved courses</div>
+    <div style="overflow:hidden;border-radius:8px;border:1px solid var(--border-light);">
+      <table class="tbl">
+        <thead><tr><th>Course</th><th>Provider</th><th>Cost</th><th>Completed</th></tr></thead>
+        <tbody>
+          <tr><td>Safety Management Systems</td><td class="m">IOSH</td><td>£420</td><td class="m">Nov 2025</td></tr>
+          <tr><td>Python Fundamentals</td><td class="m">Coursera</td><td>£199</td><td class="m">Jun 2025</td></tr>
+        </tbody>
+      </table>
     </div>
-
-    <div class="view" id="view-notifs">
-      <div class="page-header">
-        <div class="page-eyebrow">My account</div>
-        <div class="page-title">Notifications</div>
-        <div class="page-sub">Status updates on your requests and approvals.</div>
-      </div>
-      <div id="notif-list"></div>
-    </div>
-
-    <div class="view" id="view-report">
-      <div class="page-header">
-        <div class="page-eyebrow">Analytics</div>
-        <div class="page-title">L&amp;D spend report</div>
-        <div class="page-sub">External course requests — 2026 year to date</div>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
-          <div class="stat-val" id="stat-total">4</div>
-          <div class="stat-label">Total requests</div>
-          <div class="stat-sub">this year</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <div class="stat-val" id="stat-spend">£2,340</div>
-          <div class="stat-label">Approved spend</div>
-          <div class="stat-sub">of £8,000 annual budget</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <div class="stat-val" id="stat-rate">75%</div>
-          <div class="stat-label">Approval rate</div>
-          <div class="stat-sub" id="stat-rate-sub">3 of 4 approved</div>
-        </div>
-      </div>
-      <div class="form-card" style="padding:0;overflow:hidden;">
-        <table class="report-table">
-          <thead><tr><th>Course</th><th>Employee</th><th>Provider</th><th>Cost</th><th>Status</th><th>Date</th></tr></thead>
-          <tbody id="report-tbody">
-            <tr><td>PRINCE2 Project Management</td><td class="muted">D. Nwosu</td><td class="muted">AXELOS</td><td>£850</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">Mar 2026</td></tr>
-            <tr><td>Python for Data Analysis</td><td class="muted">L. Chen</td><td class="muted">Coursera</td><td>£299</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">Feb 2026</td></tr>
-            <tr><td>GDPR Practitioner Certificate</td><td class="muted">A. Patel</td><td class="muted">IAPP</td><td>£1,191</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">Jan 2026</td></tr>
-            <tr><td>Agile Scrum Master</td><td class="muted">T. Moore</td><td class="muted">Scrum Alliance</td><td>£399</td><td><span class="badge badge-declined">Declined</span></td><td class="muted">Jan 2026</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </main>
+  </div>
 </div>
 
+<!-- ──────────── LEARNER: NEW REQUEST ──────────── -->
+<div class="view" id="view-l-submit">
+  <div class="ph">
+    <div class="ph-eye">New request</div>
+    <div class="ph-title">Request an external course</div>
+    <div class="ph-sub">Your request goes to your line manager first, then HR for final approval.</div>
+  </div>
+  <div class="form-card">
+    <div class="fst">Course details</div>
+    <div class="field"><label>Course name <span class="req">*</span></label><input id="f-course" placeholder="e.g. AWS Solutions Architect — Associate"></div>
+    <div class="r2">
+      <div class="field"><label>Provider / platform <span class="req">*</span></label><input id="f-provider" placeholder="e.g. Coursera, BCS"></div>
+      <div class="field"><label>Course URL</label><input id="f-url" placeholder="https://..."></div>
+    </div>
+    <div class="r3">
+      <div class="field"><label>Cost (£) <span class="req">*</span></label><input type="number" id="f-cost" placeholder="495"></div>
+      <div class="field"><label>Start date</label><input id="f-start" placeholder="01 Jul 2026"></div>
+      <div class="field"><label>Duration</label><input id="f-duration" placeholder="40 hrs online"></div>
+    </div>
+    <div class="field"><label>Delivery format</label>
+      <select id="f-delivery"><option>Online — self-paced</option><option>Online — instructor-led</option><option>In-person</option><option>Blended</option></select>
+    </div>
+  </div>
+  <div class="form-card">
+    <div class="fst">Justification</div>
+    <div class="field"><label>Business case <span class="req">*</span></label><textarea id="f-just" placeholder="How does this support your role or an upcoming project?"></textarea></div>
+    <div class="field"><label>Expected outcome</label><input id="f-outcome" placeholder="e.g. AWS certified by Q3, supporting cloud migration"></div>
+    <div class="field"><label>Will you share learning with the team?</label>
+      <select id="f-share"><option>Yes — lunch and learn</option><option>Yes — written summary</option><option>No — individual requirement</option></select>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="submitRequest()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Submit for approval
+      </button>
+      <button class="btn btn-ghost" onclick="prefill()">Demo prefill</button>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────── LEARNER / SHARED: NOTIFICATIONS ──────────── -->
+<div class="view" id="view-notifs">
+  <div class="ph">
+    <div class="ph-eye">My account</div>
+    <div class="ph-title">Notifications</div>
+    <div class="ph-sub">Updates on requests across the workflow.</div>
+  </div>
+  <div id="notif-list"></div>
+</div>
+
+<!-- ──────────── MANAGER: TEAM DASHBOARD ──────────── -->
+<div class="view" id="view-m-home">
+  <div class="ph">
+    <div class="ph-eye">Team overview</div>
+    <div class="ph-title">Team dashboard</div>
+    <div class="ph-sub">Operations team — external learning summary for 2026.</div>
+  </div>
+  <div class="sg4">
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+      <div class="stat-val">6</div>
+      <div class="stat-lbl">Team members</div>
+      <div class="stat-sub">in your direct reports</div>
+    </div>
+    <div class="stat" id="m-pending-stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="stat-val" id="m-pending-val">1</div>
+      <div class="stat-lbl">Pending your review</div>
+      <div class="stat-sub">action required</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div class="stat-val" id="m-approved-val">3</div>
+      <div class="stat-lbl">Approved this year</div>
+      <div class="stat-sub">across your team</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="stat-val" id="m-spend-val">£2,160</div>
+      <div class="stat-lbl">Team spend YTD</div>
+      <div class="stat-sub" id="m-budget-sub">of £6,000 team budget</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
+    <div class="card card-top-accent">
+      <div class="sec-title">Requests needing action</div>
+      <div id="m-action-preview">
+        <div class="feed-item">
+          <div class="feed-dot amber"></div>
+          <div>
+            <div class="feed-body"><strong>Sam Riley</strong> — AWS Solutions Architect (£495)</div>
+            <div class="feed-time">Submitted 2 hours ago &nbsp;·&nbsp; <span style="color:var(--amber-text);font-weight:600;cursor:pointer;" onclick="switchPage('m-queue')">Review now →</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card card-top-accent">
+      <div class="sec-title">Team budget</div>
+      <div style="font-size:22px;font-weight:700;color:var(--navy);font-family:'Montserrat',sans-serif;" id="m-budget-display">£2,160 <span style="font-size:13px;font-weight:400;color:var(--text-3);">/ £6,000</span></div>
+      <div class="budget-track"><div class="budget-fill" id="m-budget-bar" style="width:36%;"></div></div>
+      <div style="font-size:12px;color:var(--text-3);">36% of annual team allocation used</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Recent team activity</div>
+    <div class="feed-item"><div class="feed-dot"></div><div><div class="feed-body"><strong>L. Chen</strong> completed Python for Data Analysis — certificate uploaded</div><div class="feed-time">3 days ago</div></div></div>
+    <div class="feed-item"><div class="feed-dot"></div><div><div class="feed-body"><strong>D. Nwosu</strong> PRINCE2 approval confirmed by HR</div><div class="feed-time">2 weeks ago</div></div></div>
+    <div class="feed-item"><div class="feed-dot grey"></div><div><div class="feed-body"><strong>T. Moore</strong> Scrum Master request — declined at HR stage</div><div class="feed-time">3 weeks ago</div></div></div>
+  </div>
+</div>
+
+<!-- ──────────── MANAGER: PENDING APPROVALS ──────────── -->
+<div class="view" id="view-m-queue">
+  <div class="ph">
+    <div class="ph-eye">Approvals</div>
+    <div class="ph-title">Pending approvals</div>
+    <div class="ph-sub">Review your team's requests before they escalate to HR.</div>
+  </div>
+  <div id="m-queue-list">
+    <div class="qcard" id="mq-card">
+      <div class="qcard-top">
+        <div>
+          <div class="qcard-title">AWS Solutions Architect — Associate</div>
+          <div class="qcard-meta">Sam Riley &nbsp;·&nbsp; Engineer II &nbsp;·&nbsp; Coursera &nbsp;·&nbsp; 01 Jul 2026</div>
+        </div>
+        <span class="badge b-pending">Awaiting your review</span>
+      </div>
+      <div class="qcard-details">
+        <div class="qd"><span class="ql">Cost:</span><span class="qv">£495</span></div>
+        <div class="qd"><span class="ql">Format:</span><span class="qv">Online — self-paced</span></div>
+        <div class="qd"><span class="ql">Duration:</span><span class="qv">40 hours</span></div>
+        <div class="qd"><span class="ql">Outcome share:</span><span class="qv">Lunch and learn</span></div>
+      </div>
+      <div class="quote">"This certification will support the APAC cloud migration project and aligns with Q3 team upskilling targets. AWS certification is a prerequisite for the project committee."</div>
+      <div class="act-row">
+        <button class="btn btn-approve btn-sm" onclick="mgrApprove()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>Approve &amp; send to HR
+        </button>
+        <button class="btn btn-decline btn-sm" onclick="mgrDecline()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Decline
+        </button>
+        <span style="margin-left:auto;font-size:11.5px;color:var(--text-3);">Submitted 2 hours ago</span>
+      </div>
+    </div>
+    <div class="empty" id="mq-empty" style="display:none;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <p>No requests pending your review.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────── MANAGER: TEAM SPEND ──────────── -->
+<div class="view" id="view-m-team">
+  <div class="ph">
+    <div class="ph-eye">Team</div>
+    <div class="ph-title">Team spend</div>
+    <div class="ph-sub">External course spend per team member — 2026 year to date.</div>
+  </div>
+  <div class="card card-top-accent" style="margin-bottom:1rem;">
+    <div class="sec-title">Individual breakdown</div>
+    <div class="person-row">
+      <div class="pav">LCh</div>
+      <div><div class="pname">L. Chen</div><div class="prole">Data Analyst</div></div>
+      <div class="pright"><div class="pamt">£299</div><div class="psub">1 course approved</div></div>
+    </div>
+    <div class="person-row">
+      <div class="pav">DNw</div>
+      <div><div class="pname">D. Nwosu</div><div class="prole">Project Lead</div></div>
+      <div class="pright"><div class="pamt">£850</div><div class="psub">1 course approved</div></div>
+    </div>
+    <div class="person-row">
+      <div class="pav">APa</div>
+      <div><div class="pname">A. Patel</div><div class="prole">Compliance Officer</div></div>
+      <div class="pright"><div class="pamt">£1,011</div><div class="psub">2 courses approved</div></div>
+    </div>
+    <div class="person-row">
+      <div class="pav">TMo</div>
+      <div><div class="pname">T. Moore</div><div class="prole">Scrum Master</div></div>
+      <div class="pright"><div class="pamt">£0</div><div class="psub" style="color:var(--red-text);">Last request declined</div></div>
+    </div>
+    <div class="person-row">
+      <div class="pav" style="background:var(--amber-light);color:var(--amber-text);">SRi</div>
+      <div><div class="pname">S. Riley</div><div class="prole">Engineer II</div></div>
+      <div class="pright"><div class="pamt" style="color:var(--amber-text);">£495 pending</div><div class="psub">Awaiting approval</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="sec-title">Team budget tracker</div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+      <span style="font-size:13px;color:var(--text-2);">Annual team allocation</span>
+      <span style="font-size:14px;font-weight:700;color:var(--navy);font-family:'Montserrat',sans-serif;" id="m-team-budget-display">£2,160 / £6,000</span>
+    </div>
+    <div class="budget-track"><div class="budget-fill" style="width:36%;"></div></div>
+    <div style="font-size:12px;color:var(--text-3);margin-top:4px;">£3,840 remaining &nbsp;·&nbsp; 36% utilised</div>
+  </div>
+</div>
+
+<!-- ──────────── HR: ORG DASHBOARD ──────────── -->
+<div class="view" id="view-hr-home">
+  <div class="ph">
+    <div class="ph-eye">HR overview</div>
+    <div class="ph-title">Organisation dashboard</div>
+    <div class="ph-sub">Company-wide external learning activity — 2026 year to date.</div>
+  </div>
+  <div class="sg4">
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+      <div class="stat-val" id="hr-total">4</div>
+      <div class="stat-lbl">Total requests YTD</div>
+      <div class="stat-sub">across all departments</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="stat-val" id="hr-pending-val">0</div>
+      <div class="stat-lbl">Awaiting HR sign-off</div>
+      <div class="stat-sub" id="hr-pending-sub">No action needed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <div class="stat-val" id="hr-spend">£2,340</div>
+      <div class="stat-lbl">Approved spend YTD</div>
+      <div class="stat-sub">of £24,000 org budget</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="stat-val" id="hr-rate">75%</div>
+      <div class="stat-lbl">Approval rate</div>
+      <div class="stat-sub" id="hr-rate-sub">3 of 4 approved</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1rem;">
+    <div class="card card-top-accent">
+      <div class="sec-title">Budget by department</div>
+      <div style="margin-top:4px;">
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px;"><span style="color:var(--text-2);">Operations</span><span style="font-weight:600;color:var(--navy);">£2,160 / £6,000</span></div>
+        <div class="budget-track"><div class="budget-fill" style="width:36%;"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin:10px 0 4px;"><span style="color:var(--text-2);">Finance</span><span style="font-weight:600;color:var(--navy);">£840 / £4,000</span></div>
+        <div class="budget-track"><div class="budget-fill" style="width:21%;"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin:10px 0 4px;"><span style="color:var(--text-2);">Engineering</span><span style="font-weight:600;color:var(--navy);">£3,100 / £8,000</span></div>
+        <div class="budget-track"><div class="budget-fill warn" style="width:39%;"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:12.5px;margin:10px 0 4px;"><span style="color:var(--text-2);">HSE</span><span style="font-weight:600;color:var(--navy);">£240 / £6,000</span></div>
+        <div class="budget-track"><div class="budget-fill" style="width:4%;"></div></div>
+      </div>
+    </div>
+    <div class="card card-top-accent">
+      <div class="sec-title">Approval pipeline</div>
+      <div class="feed-item"><div class="feed-dot amber"></div><div><div class="feed-body">1 request with managers awaiting decision</div><div class="feed-time">Operations dept</div></div></div>
+      <div class="feed-item" id="hr-pipeline-item" style="display:none;"><div class="feed-dot" style="background:var(--purple);"></div><div><div class="feed-body" id="hr-pipeline-body"></div><div class="feed-time">Awaiting your sign-off</div></div></div>
+      <div class="feed-item"><div class="feed-dot"></div><div><div class="feed-body">3 requests fully approved this year</div><div class="feed-time">Last: Mar 2026</div></div></div>
+      <div class="feed-item"><div class="feed-dot grey"></div><div><div class="feed-body">1 request declined (budget exceeded)</div><div class="feed-time">Jan 2026</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────── HR: FINAL APPROVALS ──────────── -->
+<div class="view" id="view-hr-queue">
+  <div class="ph">
+    <div class="ph-eye">Final approvals</div>
+    <div class="ph-title">HR sign-off queue</div>
+    <div class="ph-sub">Requests approved by managers, awaiting your final confirmation and budget code.</div>
+  </div>
+  <div id="hr-queue-list">
+    <div class="empty" id="hr-q-empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <p>No requests awaiting HR sign-off.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────── HR: BUDGET & COMPLIANCE ──────────── -->
+<div class="view" id="view-hr-budget">
+  <div class="ph">
+    <div class="ph-eye">Finance</div>
+    <div class="ph-title">Budget &amp; compliance</div>
+    <div class="ph-sub">Annual L&D allocation tracking across all departments.</div>
+  </div>
+  <div class="sg2" style="margin-bottom:1rem;">
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+      <div class="stat-val">£24,000</div>
+      <div class="stat-lbl">Total org budget 2026</div>
+      <div class="stat-sub">Allocated across 4 departments</div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+      <div class="stat-val">9.75%</div>
+      <div class="stat-lbl">Budget utilised YTD</div>
+      <div class="stat-sub">£21,660 remaining</div>
+    </div>
+  </div>
+  <div class="card card-top-accent">
+    <div class="sec-title">Department allocation</div>
+    <div style="overflow:hidden;border-radius:8px;border:1px solid var(--border-light);">
+      <table class="tbl">
+        <thead><tr><th>Department</th><th>Budget</th><th>Spent</th><th>Remaining</th><th>Utilisation</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Operations</td><td class="m">£6,000</td><td>£2,160</td><td>£3,840</td><td class="m">36%</td><td><span class="badge b-ok">On track</span></td></tr>
+          <tr><td>Engineering</td><td class="m">£8,000</td><td>£3,100</td><td>£4,900</td><td class="m">39%</td><td><span class="badge b-pending">Monitor</span></td></tr>
+          <tr><td>Finance</td><td class="m">£4,000</td><td>£840</td><td>£3,160</td><td class="m">21%</td><td><span class="badge b-ok">On track</span></td></tr>
+          <tr><td>HSE</td><td class="m">£6,000</td><td>£240</td><td>£5,760</td><td class="m">4%</td><td><span class="badge b-no">Underutilised</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────── HR: FULL REPORT ──────────── -->
+<div class="view" id="view-hr-report">
+  <div class="ph">
+    <div class="ph-eye">Reporting</div>
+    <div class="ph-title">Full request log</div>
+    <div class="ph-sub">All external course requests across the organisation — 2026 year to date.</div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <table class="tbl" id="hr-full-table">
+      <thead><tr><th>Course</th><th>Employee</th><th>Dept</th><th>Cost</th><th>Manager approved</th><th>Status</th><th>Date</th></tr></thead>
+      <tbody id="hr-full-tbody">
+        <tr><td>PRINCE2 Project Management</td><td class="m">D. Nwosu</td><td class="m">Operations</td><td>£850</td><td class="m">J. Okafor</td><td><span class="badge b-done">Confirmed</span></td><td class="m">Mar 2026</td></tr>
+        <tr><td>Python for Data Analysis</td><td class="m">L. Chen</td><td class="m">Operations</td><td>£299</td><td class="m">J. Okafor</td><td><span class="badge b-done">Confirmed</span></td><td class="m">Feb 2026</td></tr>
+        <tr><td>GDPR Practitioner</td><td class="m">A. Patel</td><td class="m">Operations</td><td>£1,191</td><td class="m">J. Okafor</td><td><span class="badge b-done">Confirmed</span></td><td class="m">Jan 2026</td></tr>
+        <tr><td>Agile Scrum Master</td><td class="m">T. Moore</td><td class="m">Operations</td><td>£399</td><td class="m">—</td><td><span class="badge b-no">Declined</span></td><td class="m">Jan 2026</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+</div><!-- /layout -->
+
 <script>
-  let currentRole='learner', notifications=[], pendingMgr=false, pendingHR=false, submittedData=null;
-  let approvedCount=3, totalCount=4, totalSpend=2340, notifUnread=1;
+  /* ── STATE ── */
+  let role = 'learner';
+  let notifications = [];
+  let notifUnread = 2;
+  let pendingHR = false;
+  let submittedData = null;
+  let hrApprovedCount = 3, hrTotalCount = 4, hrSpend = 2340;
 
-  addNotification('Welcome to the L&D Portal','Your account is set up. Submit a new course request to get started.','info','2 days ago');
-  renderNotifications();
+  /* ── SEED NOTIFICATIONS ── */
+  addNotif('Course request submitted', 'Your request for <strong>Safety Management Systems</strong> was approved by HR in Nov 2025.', 'ok', '5 months ago');
+  addNotif('Welcome to the L&D Portal', 'Submit a new external course request to get started.', 'info', '6 months ago');
+  renderNotifs();
 
-  function switchView(id){
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-    document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
-    document.getElementById('view-'+id).classList.add('active');
-    const nav=document.getElementById('nav-'+id); if(nav)nav.classList.add('active');
-    if(id==='notifs'){notifUnread=0;updateNotifBadge();document.querySelectorAll('.notif-dot-indicator').forEach(d=>d.classList.add('read'));}
-  }
+  /* ── NAVIGATION ── */
+  const pageToSidebar = {
+    'l-home':'learner','l-submit':'learner','notifs':'learner',
+    'm-home':'manager','m-queue':'manager','m-team':'manager',
+    'hr-home':'hr','hr-queue':'hr','hr-budget':'hr','hr-report':'hr'
+  };
 
-  function prefill(){
-    document.getElementById('f-course').value='AWS Solutions Architect — Associate';
-    document.getElementById('f-provider').value='Coursera';
-    document.getElementById('f-url').value='https://www.coursera.org/aws-solutions-architect';
-    document.getElementById('f-cost').value='495';
-    document.getElementById('f-start').value='01 Jul 2026';
-    document.getElementById('f-duration').value='40 hours online';
-    document.getElementById('f-justification').value='This certification will support the APAC cloud migration project and aligns with Q3 team upskilling targets. I will be leading the infrastructure workstream and AWS certification is a prerequisite for the project committee.';
-    document.getElementById('f-outcome').value='AWS certified by Q3; leading cloud infrastructure workstream';
-  }
-
-  function submitRequest(){
-    const d={
-      course:document.getElementById('f-course').value||'AWS Solutions Architect — Associate',
-      provider:document.getElementById('f-provider').value||'Coursera',
-      cost:document.getElementById('f-cost').value||'495',
-      justification:document.getElementById('f-justification').value||'Supports upcoming project workstream.',
-      delivery:document.getElementById('f-delivery').value,
-      start:document.getElementById('f-start').value||'01 Jul 2026',
-      duration:document.getElementById('f-duration').value||'40 hours'
+  function switchPage(id) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + id).classList.add('active');
+    // sidebar active state
+    const allNavBtns = document.querySelectorAll('.sl');
+    allNavBtns.forEach(b => b.classList.remove('active'));
+    const nb = document.getElementById('n' + id.replace('-','').replace('-','') ) ||
+               document.getElementById('n' + id.replace(/^(\w)-/,'$1').replace('-',''));
+    // map nav IDs
+    const navMap = {
+      'l-home':'nl-home','l-submit':'nl-submit','notifs':'nl-notifs',
+      'm-home':'nm-home','m-queue':'nm-queue','m-team':'nm-team',
+      'hr-home':'nhr-home','hr-queue':'nhr-queue','hr-budget':'nhr-budget','hr-report':'nhr-report'
     };
-    submittedData=d; pendingMgr=true;
-    document.getElementById('mgr-sidebar-count').style.display='flex';
-    document.getElementById('mgr-empty').style.display='none';
-    renderMgrCard(); renderMyRequests('pending');
-    addNotification('Request submitted',`Your request for <strong>${d.course}</strong> has been received and sent to your manager for review.`,'success','Just now');
-    notifUnread++; updateNotifBadge();
-    showToast('Request submitted',`Sent to James Okafor for review.`,'success');
-    switchView('myrequests');
+    const navEl = document.getElementById(navMap[id]);
+    if (navEl) navEl.classList.add('active');
+    if (id === 'notifs') { notifUnread = 0; updateNBadge(); document.querySelectorAll('.nidot').forEach(d => d.classList.add('read')); }
   }
 
-  function renderMgrCard(){
-    const d=submittedData;
-    document.getElementById('mgr-list').innerHTML=`
-      <div class="req-card">
-        <div class="req-card-top">
-          <div><div class="req-card-title">${d.course}</div><div class="req-card-meta">Sam Riley &nbsp;·&nbsp; ${d.provider} &nbsp;·&nbsp; ${d.start}</div></div>
-          <span class="badge badge-pending">Pending review</span>
+  /* ── ROLE SWITCH ── */
+  function switchRole(r) {
+    role = r;
+    const cfg = {
+      learner: { initials:'SR', name:'Sam Riley', role:'Learner', avBg:'var(--teal)', avCol:'var(--navy)', defaultPage:'l-home' },
+      manager: { initials:'JO', name:'James Okafor', role:'Manager', avBg:'var(--navy)', avCol:'#fff', defaultPage:'m-home' },
+      hr:      { initials:'PN', name:'Priya Nair', role:'HR Business Partner', avBg:'#5b3ea8', avCol:'#fff', defaultPage:'hr-home' }
+    };
+    const c = cfg[r];
+    const tav = document.getElementById('tav');
+    tav.textContent = c.initials; tav.style.background = c.avBg; tav.style.color = c.avCol;
+    document.getElementById('tname').textContent = c.name;
+    document.getElementById('rtag').textContent = c.role + ' ▾';
+    // sidebars
+    document.getElementById('sb-learner').style.display = r === 'learner' ? 'block' : 'none';
+    document.getElementById('sb-manager').style.display = r === 'manager' ? 'block' : 'none';
+    document.getElementById('sb-hr').style.display = r === 'hr' ? 'block' : 'none';
+    // role options
+    document.querySelectorAll('.ro').forEach(o => o.classList.remove('cur'));
+    const roMap = ['learner','manager','hr'];
+    document.querySelectorAll('.ro')[roMap.indexOf(r)].classList.add('cur');
+    toggleRS();
+    // notifs sidebar link only visible for learner
+    const nn = document.getElementById('nl-notifs');
+    if (nn) nn.style.display = r === 'learner' ? 'flex' : 'none';
+    switchPage(c.defaultPage);
+    showToast('Switched role', 'Viewing as ' + c.name + ' (' + c.role + ')', 'info');
+  }
+
+  /* ── PREFILL ── */
+  function prefill() {
+    document.getElementById('f-course').value = 'AWS Solutions Architect — Associate';
+    document.getElementById('f-provider').value = 'Coursera';
+    document.getElementById('f-url').value = 'https://www.coursera.org/aws-solutions-architect';
+    document.getElementById('f-cost').value = '495';
+    document.getElementById('f-start').value = '01 Jul 2026';
+    document.getElementById('f-duration').value = '40 hours online';
+    document.getElementById('f-just').value = 'This certification will support the APAC cloud migration project and aligns with Q3 team upskilling targets. AWS certification is a prerequisite for the project committee.';
+    document.getElementById('f-outcome').value = 'AWS certified by Q3; leading cloud infrastructure workstream';
+  }
+
+  /* ── SUBMIT REQUEST ── */
+  function submitRequest() {
+    const d = {
+      course: document.getElementById('f-course').value || 'AWS Solutions Architect — Associate',
+      provider: document.getElementById('f-provider').value || 'Coursera',
+      cost: document.getElementById('f-cost').value || '495',
+      just: document.getElementById('f-just').value || 'Supports project workstream.',
+      delivery: document.getElementById('f-delivery').value,
+      start: document.getElementById('f-start').value || '01 Jul 2026',
+      duration: document.getElementById('f-duration').value || '40 hours'
+    };
+    submittedData = d;
+    addNotif('Request submitted', 'Your request for <strong>' + d.course + '</strong> has been sent to James Okafor for review.', 'pending', 'Just now');
+    notifUnread++;
+    updateNBadge();
+    showToast('Request submitted', 'Sent to James Okafor for review.', 'ok');
+    switchPage('l-home');
+  }
+
+  /* ── MANAGER APPROVE ── */
+  function mgrApprove() {
+    const d = submittedData || { course:'AWS Solutions Architect — Associate', provider:'Coursera', cost:'495', just:'Cloud migration project support.', delivery:'Online — self-paced', start:'01 Jul 2026', duration:'40 hours' };
+    submittedData = d;
+    // clear manager queue
+    document.getElementById('mq-card').style.display = 'none';
+    document.getElementById('mq-empty').style.display = 'block';
+    document.getElementById('m-pending-val').textContent = '0';
+    document.getElementById('m-q-sc').style.display = 'none';
+    document.getElementById('m-action-preview').innerHTML = '<div class="feed-item"><div class="feed-dot grey"></div><div><div class="feed-body">No pending requests — all reviewed.</div><div class="feed-time">Queue clear</div></div></div>';
+    // update manager approved count
+    const prev = parseInt(document.getElementById('m-approved-val').textContent);
+    document.getElementById('m-approved-val').textContent = prev + 1;
+    const prevSpend = 2160 + parseInt(d.cost || 495);
+    document.getElementById('m-spend-val').textContent = '£' + prevSpend.toLocaleString();
+    document.getElementById('m-team-budget-display').textContent = '£' + prevSpend.toLocaleString() + ' / £6,000';
+    // push to HR queue
+    pendingHR = true;
+    document.getElementById('hr-q-sc').style.display = 'flex';
+    document.getElementById('hr-pending-val').textContent = '1';
+    document.getElementById('hr-pending-sub').textContent = 'Action required';
+    document.getElementById('hr-pipeline-item').style.display = 'flex';
+    document.getElementById('hr-pipeline-body').innerHTML = '<strong>' + d.course + '</strong> forwarded by J. Okafor';
+    renderHRQueue(d);
+    // notify learner
+    addNotif('Manager approved', 'James Okafor approved your request for <strong>' + d.course + '</strong>. Sent to HR for final sign-off.', 'ok', 'Just now');
+    notifUnread++;
+    updateNBadge();
+    showToast('Approved — forwarded to HR', 'James Okafor signed off.', 'ok');
+    switchPage('m-home');
+  }
+
+  function mgrDecline() {
+    const d = submittedData || { course:'AWS Solutions Architect — Associate' };
+    document.getElementById('mq-card').style.display = 'none';
+    document.getElementById('mq-empty').style.display = 'block';
+    document.getElementById('m-pending-val').textContent = '0';
+    document.getElementById('m-q-sc').style.display = 'none';
+    // update learner view
+    document.getElementById('l-status-msg').textContent = 'Your request was declined by James Okafor. Please contact your manager for more details.';
+    document.getElementById('l-status-msg').style.background = 'var(--red-light)';
+    document.getElementById('l-status-msg').style.color = 'var(--red-text)';
+    addNotif('Request declined', 'James Okafor has declined your request for <strong>' + d.course + '</strong>. Contact your manager for details.', 'warn', 'Just now');
+    notifUnread++;
+    updateNBadge();
+    showToast('Request declined', 'Learner has been notified.', 'warn');
+    switchPage('m-home');
+  }
+
+  /* ── RENDER HR QUEUE ── */
+  function renderHRQueue(d) {
+    document.getElementById('hr-q-empty').style.display = 'none';
+    document.getElementById('hr-queue-list').innerHTML = `
+      <div class="qcard" id="hrq-card">
+        <div class="qcard-top">
+          <div>
+            <div class="qcard-title">${d.course}</div>
+            <div class="qcard-meta">Sam Riley &nbsp;·&nbsp; Operations &nbsp;·&nbsp; ${d.provider} &nbsp;·&nbsp; ${d.start}</div>
+          </div>
+          <span class="badge b-mgr">Manager approved</span>
         </div>
-        ${renderProgress(1)}
-        <div class="detail-row">
-          <span class="detail-item"><span class="detail-label">Cost:</span><span class="detail-val"> £${d.cost}</span></span>
-          <span class="detail-item"><span class="detail-label">Format:</span><span class="detail-val"> ${d.delivery}</span></span>
-          <span class="detail-item"><span class="detail-label">Duration:</span><span class="detail-val"> ${d.duration}</span></span>
+        <div style="background:var(--blue-light);border-radius:7px;padding:8px 12px;font-size:12.5px;color:var(--blue-text);margin-bottom:10px;">
+          <strong>Manager note:</strong> Approved by James Okafor (Operations Manager) — recommended for Q3 cloud workstream.
         </div>
-        <div class="quote-block">"${d.justification}"</div>
-        <div class="action-row">
-          <button class="btn btn-approve btn-sm" onclick="mgrApprove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Approve</button>
-          <button class="btn btn-decline btn-sm" onclick="mgrDecline()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Decline</button>
-          <span class="action-spacer"></span><span class="action-time">Submitted just now</span>
+        <div class="qcard-details">
+          <div class="qd"><span class="ql">Cost:</span><span class="qv">£${d.cost}</span></div>
+          <div class="qd"><span class="ql">Format:</span><span class="qv">${d.delivery}</span></div>
+          <div class="qd"><span class="ql">Duration:</span><span class="qv">${d.duration}</span></div>
+          <div class="qd"><span class="ql">Proposed budget code:</span><span class="qv">L&D-2026-Q3</span></div>
+          <div class="qd"><span class="ql">Dept remaining:</span><span class="qv">£3,345</span></div>
         </div>
-      </div>`;
-  }
-
-  function mgrApprove(){
-    const d=submittedData; pendingMgr=false; pendingHR=true;
-    document.getElementById('mgr-sidebar-count').style.display='none';
-    document.getElementById('mgr-list').innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="var(--te-teal)" stroke-width="1.5" width="40" height="40"><polyline points="20 6 9 17 4 12"/></svg><p style="color:var(--te-teal-text);font-weight:600;">All reviews complete.</p></div>`;
-    document.getElementById('hr-sidebar-count').style.display='flex';
-    renderHRCard(); renderMyRequests('hr');
-    addNotification('Manager approved',`James Okafor approved your request for <strong>${d.course}</strong>. Forwarded to HR for final sign-off.`,'success','Just now');
-    notifUnread++; updateNotifBadge();
-    showToast('Approved — forwarded to HR','James Okafor signed off.','success');
-    switchView('hr');
-  }
-
-  function mgrDecline(){
-    const d=submittedData; pendingMgr=false;
-    document.getElementById('mgr-sidebar-count').style.display='none';
-    document.getElementById('mgr-list').innerHTML=`<div class="empty-state"><p>No pending requests.</p></div>`;
-    renderMyRequests('declined');
-    addNotification('Request not approved',`Your request for <strong>${d.course}</strong> was declined by your manager. Contact James Okafor for more information.`,'warn','Just now');
-    notifUnread++; updateNotifBadge();
-    showToast('Request declined','Contact James Okafor for details.','warn');
-    switchView('myrequests');
-  }
-
-  function renderHRCard(){
-    const d=submittedData;
-    document.getElementById('hr-list').innerHTML=`
-      <div class="req-card">
-        <div class="req-card-top">
-          <div><div class="req-card-title">${d.course}</div><div class="req-card-meta">Sam Riley &nbsp;·&nbsp; Approved by: James Okafor (Manager)</div></div>
-          <span class="badge badge-mgr">Manager approved</span>
+        <div class="quote">"${d.just}"</div>
+        <div class="act-row">
+          <button class="btn btn-approve btn-sm" onclick="hrApprove()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>Confirm &amp; allocate budget
+          </button>
+          <button class="btn btn-decline btn-sm" onclick="hrDecline()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Decline
+          </button>
+          <span style="margin-left:auto;font-size:11.5px;color:var(--text-3);">Forwarded by manager</span>
         </div>
-        ${renderProgress(2)}
-        <div class="detail-row">
-          <span class="detail-item"><span class="detail-label">Cost:</span><span class="detail-val"> £${d.cost}</span></span>
-          <span class="detail-item"><span class="detail-label">Budget code:</span><span class="detail-val"> L&D-2026-Q3</span></span>
-          <span class="detail-item"><span class="detail-label">Format:</span><span class="detail-val"> ${d.delivery}</span></span>
-        </div>
-        <div class="quote-block">"${d.justification}"</div>
-        <div class="action-row">
-          <button class="btn btn-approve btn-sm" onclick="hrApprove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Final approval</button>
-          <button class="btn btn-decline btn-sm" onclick="hrDecline()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Decline</button>
-          <span class="action-spacer"></span><span class="action-time">Forwarded by manager</span>
-        </div>
-      </div>`;
+      </div>` + document.getElementById('hr-queue-list').innerHTML.replace(/<div class="qcard"[\s\S]*/, '');
   }
 
-  function hrApprove(){
-    const d=submittedData; pendingHR=false;
-    document.getElementById('hr-sidebar-count').style.display='none';
-    document.getElementById('hr-list').innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="var(--te-teal)" stroke-width="1.5" width="40" height="40"><polyline points="20 6 9 17 4 12"/></svg><p style="color:var(--te-teal-text);font-weight:600;">All requests processed.</p></div>`;
-    renderMyRequests('approved');
-    addNotification('Course fully approved!',`Your request for <strong>${d.course}</strong> has been approved by HR. Budget code: L&D-2026-Q3. Check your email for booking details.`,'success','Just now');
-    notifUnread++; updateNotifBadge();
-    showToast('Fully approved!',`${d.course} confirmed. Budget: L&D-2026-Q3.`,'success');
-    approvedCount++; totalCount++; totalSpend+=parseInt(d.cost)||495;
-    updateReport(d); switchView('notifs');
+  /* ── HR APPROVE ── */
+  function hrApprove() {
+    const d = submittedData || { course:'AWS Solutions Architect — Associate', provider:'Coursera', cost:'495' };
+    pendingHR = false;
+    document.getElementById('hr-queue-list').innerHTML = '<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" width="36" height="36"><polyline points="20 6 9 17 4 12"/></svg><p style="color:var(--teal-text);font-weight:600;">All requests processed.</p></div>';
+    document.getElementById('hr-q-sc').style.display = 'none';
+    document.getElementById('hr-pending-val').textContent = '0';
+    document.getElementById('hr-pending-sub').textContent = 'No action needed';
+    // update org stats
+    hrApprovedCount++; hrTotalCount++; hrSpend += parseInt(d.cost) || 495;
+    document.getElementById('hr-total').textContent = hrTotalCount;
+    document.getElementById('hr-spend').textContent = '£' + hrSpend.toLocaleString();
+    document.getElementById('hr-rate').textContent = Math.round(hrApprovedCount / hrTotalCount * 100) + '%';
+    document.getElementById('hr-rate-sub').textContent = hrApprovedCount + ' of ' + hrTotalCount + ' approved';
+    // add to full report
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${d.course}</td><td class="m">S. Riley</td><td class="m">Operations</td><td>£${d.cost}</td><td class="m">J. Okafor</td><td><span class="badge b-done">Confirmed</span></td><td class="m">May 2026</td>`;
+    document.getElementById('hr-full-tbody').insertBefore(tr, document.getElementById('hr-full-tbody').firstChild);
+    // update pipeline
+    document.getElementById('hr-pipeline-item').style.display = 'none';
+    // notify learner + update learner view
+    document.getElementById('l-approved-count').textContent = '1';
+    document.getElementById('l-spent').textContent = '£' + (d.cost || '495');
+    const prog = document.getElementById('l-progress');
+    if (prog) prog.innerHTML = ['Submitted','Manager','HR','Confirmed'].map((s,i) => `<div class="ps done"><div class="pd done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" width="10" height="10"><polyline points="20 6 9 17 4 12"/></svg></div><div class="pl done">${s}</div></div>`).join('');
+    document.getElementById('l-status-msg').textContent = 'Fully approved! Budget code: L&D-2026-Q3. Check your email for booking confirmation.';
+    document.getElementById('l-status-msg').style.background = 'var(--green-light)';
+    document.getElementById('l-status-msg').style.color = 'var(--green-text)';
+    addNotif('Course approved!', 'Your request for <strong>' + d.course + '</strong> has been fully approved. Budget code: L&D-2026-Q3. Check your email for details.', 'ok', 'Just now');
+    notifUnread++;
+    updateNBadge();
+    showToast('Fully approved!', d.course + ' confirmed. Budget code: L&D-2026-Q3', 'ok');
+    switchPage('hr-home');
   }
 
-  function hrDecline(){
-    const d=submittedData; pendingHR=false;
-    document.getElementById('hr-sidebar-count').style.display='none';
-    document.getElementById('hr-list').innerHTML=`<div class="empty-state"><p>No pending HR approvals.</p></div>`;
-    renderMyRequests('declined');
-    addNotification('Request declined by HR',`Your request for <strong>${d.course}</strong> was not approved at HR stage. Contact Priya Nair for details.`,'warn','Just now');
-    notifUnread++; updateNotifBadge();
-    showToast('Declined by HR','Contact Priya Nair for details.','warn');
-    switchView('notifs');
+  function hrDecline() {
+    const d = submittedData || { course:'AWS Solutions Architect — Associate' };
+    pendingHR = false;
+    document.getElementById('hr-queue-list').innerHTML = '<div class="empty"><p>No pending HR approvals.</p></div>';
+    document.getElementById('hr-q-sc').style.display = 'none';
+    document.getElementById('hr-pending-val').textContent = '0';
+    document.getElementById('hr-pipeline-item').style.display = 'none';
+    document.getElementById('l-status-msg').textContent = 'Your request was declined at HR stage. Contact Priya Nair for more information.';
+    document.getElementById('l-status-msg').style.background = 'var(--red-light)';
+    document.getElementById('l-status-msg').style.color = 'var(--red-text)';
+    addNotif('Request declined by HR', 'Your request for <strong>' + d.course + '</strong> was not approved at HR stage. Contact Priya Nair for details.', 'warn', 'Just now');
+    notifUnread++;
+    updateNBadge();
+    showToast('Declined by HR', 'Learner has been notified.', 'warn');
+    switchPage('hr-home');
   }
 
-  function renderMyRequests(status){
-    const d=submittedData;
-    const stageMap={pending:1,hr:2,approved:3,declined:1};
-    const labels={pending:'Awaiting manager review',hr:'Awaiting HR approval',approved:'Approved — booking confirmed',declined:'Request declined'};
-    document.getElementById('my-empty').style.display='none';
-    document.getElementById('my-requests-list').innerHTML=`
-      <div class="req-card">
-        <div class="req-card-top">
-          <div><div class="req-card-title">${d.course}</div><div class="req-card-meta">${d.provider} &nbsp;·&nbsp; ${d.start} &nbsp;·&nbsp; £${d.cost}</div></div>
-          ${status==='approved'?'<span class="badge badge-approved">Approved</span>':status==='declined'?'<span class="badge badge-declined">Declined</span>':status==='hr'?'<span class="badge badge-hr">HR review</span>':'<span class="badge badge-pending">Pending</span>'}
-        </div>
-        ${renderProgress(stageMap[status]||1)}
-        <div style="font-size:13px;color:var(--text-2);margin-top:4px;">${labels[status]}</div>
-      </div>`;
+  /* ── NOTIFICATIONS ── */
+  function addNotif(title, body, type, time) {
+    notifications.unshift({ title, body, type, time, read: false });
+    renderNotifs();
   }
 
-  function renderProgress(activeStep){
-    const steps=['Submitted','Manager','HR','Confirmed'];
-    return `<div class="progress-wrap"><div class="progress-steps">${steps.map((s,i)=>`
-      <div class="prog-step ${i<activeStep?'done':''}">
-        <div class="prog-dot ${i<activeStep?'done':i===activeStep?'active':''}">
-          ${i<activeStep?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg>':i+1}
-        </div>
-        <div class="prog-step-label ${i<activeStep?'done':i===activeStep?'active':''}">${s}</div>
-      </div>`).join('')}</div></div>`;
-  }
-
-  function addNotification(title,body,type,time){notifications.unshift({title,body,type,time,read:false});renderNotifications();}
-
-  function renderNotifications(){
-    const list=document.getElementById('notif-list');
-    if(!notifications.length){list.innerHTML=`<div class="empty-state"><p>No notifications yet.</p></div>`;return;}
-    list.innerHTML=notifications.map((n,i)=>`
-      <div class="notif-item ${!n.read?'unread':''}" onclick="markRead(${i})">
-        <div class="notif-dot-indicator ${n.read?'read':''}"></div>
-        <div class="notif-content">
-          <div class="notif-title">${n.title}</div>
-          <div class="notif-body">${n.body}</div>
-          <div class="notif-time">${n.time}</div>
+  function renderNotifs() {
+    const list = document.getElementById('notif-list');
+    if (!notifications.length) { list.innerHTML = '<div class="empty"><p>No notifications.</p></div>'; return; }
+    list.innerHTML = notifications.map((n, i) => `
+      <div class="ni ${!n.read ? 'unread' : ''}" onclick="markRead(${i})" style="cursor:pointer;">
+        <div class="nidot ${n.read ? 'read' : ''}"></div>
+        <div>
+          <div class="ni-title">${n.title}</div>
+          <div class="ni-body">${n.body}</div>
+          <div class="ni-time">${n.time}</div>
         </div>
       </div>`).join('');
   }
 
-  function markRead(i){notifications[i].read=true;renderNotifications();}
+  function markRead(i) { notifications[i].read = true; renderNotifs(); }
 
-  function updateNotifBadge(){
-    const b=document.getElementById('topbar-notif-badge'),sc=document.getElementById('notif-sidebar-count');
-    if(notifUnread>0){b.style.display='flex';b.textContent=notifUnread;sc.style.display='flex';sc.textContent=notifUnread;}
-    else{b.style.display='none';sc.style.display='none';}
+  function updateNBadge() {
+    const b = document.getElementById('nbadge'), sc = document.getElementById('n-sc');
+    if (notifUnread > 0) { b.style.display = 'flex'; b.textContent = notifUnread; if(sc){sc.style.display='flex';sc.textContent=notifUnread;} }
+    else { b.style.display = 'none'; if(sc)sc.style.display='none'; }
   }
 
-  function updateReport(d){
-    document.getElementById('stat-total').textContent=totalCount;
-    document.getElementById('stat-spend').textContent='£'+totalSpend.toLocaleString();
-    document.getElementById('stat-rate').textContent=Math.round(approvedCount/totalCount*100)+'%';
-    document.getElementById('stat-rate-sub').textContent=`${approvedCount} of ${totalCount} approved`;
-    const row=document.createElement('tr');
-    row.innerHTML=`<td>${d.course}</td><td class="muted">S. Riley</td><td class="muted">${d.provider}</td><td>£${d.cost}</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">May 2026</td>`;
-    document.getElementById('report-tbody').insertBefore(row,document.getElementById('report-tbody').firstChild);
-  }
-
-  function showToast(title,msg,type){
-    const area=document.getElementById('toast-area'),t=document.createElement('div');
-    t.className='toast '+(type==='warn'?'warn':type==='info'?'info':'');
-    const ic=type==='warn'?'#c47d0e':type==='info'?'#1a5eb5':'#00A99D';
-    t.innerHTML=`<div class="toast-icon"><svg viewBox="0 0 24 24" fill="none" stroke="${ic}" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">${title}</div><div class="toast-msg">${msg}</div></div>`;
+  /* ── TOAST ── */
+  function showToast(title, msg, type) {
+    const area = document.getElementById('tarea'), t = document.createElement('div');
+    t.className = 'toast' + (type === 'warn' ? ' warn' : type === 'info' ? ' info' : '');
+    const ic = type === 'warn' ? '#c47d0e' : type === 'info' ? '#1a5eb5' : '#00A99D';
+    t.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="${ic}" stroke-width="2.5" stroke-linecap="round" width="16" height="16" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg><div><div class="toast-title">${title}</div><div class="toast-msg">${msg}</div></div>`;
     area.appendChild(t);
-    setTimeout(()=>{t.style.animation='slideOut 0.25s ease forwards';setTimeout(()=>t.remove(),260);},4200);
+    setTimeout(() => { t.style.animation = 'tOut .25s ease forwards'; setTimeout(() => t.remove(), 260); }, 4000);
   }
 
-  function toggleRoleSwitcher(){document.getElementById('role-switcher').classList.toggle('open');}
-
-  function switchRole(r){
-    currentRole=r;
-    const roles={learner:{i:'SR',n:'Sam Riley',role:'Learner',bg:'var(--te-navy)',c:'#fff'},manager:{i:'JO',n:'James Okafor',role:'Manager',bg:'var(--te-teal)',c:'var(--te-navy)'},hr:{i:'PN',n:'Priya Nair',role:'HR Business Partner',bg:'#5b3ea8',c:'#fff'}};
-    const ro=roles[r];
-    const av=document.getElementById('topbar-avatar');
-    av.textContent=ro.i; av.style.background=ro.bg; av.style.color=ro.c;
-    document.getElementById('topbar-name').textContent=ro.n;
-    document.getElementById('role-tag-btn').textContent=ro.role+' ▾';
-    document.querySelectorAll('.role-option').forEach(o=>o.classList.remove('current'));
-    ['learner','manager','hr'].forEach((x,i)=>{if(x===r)document.querySelectorAll('.role-option')[i].classList.add('current');});
-    toggleRoleSwitcher();
-    const as=document.getElementById('approval-section');
-    if(r==='learner'){as.style.display='none';switchView('submit');}
-    else if(r==='manager'){as.style.display='block';switchView('manager');if(pendingMgr)document.getElementById('mgr-sidebar-count').style.display='flex';}
-    else if(r==='hr'){as.style.display='block';switchView('hr');if(pendingHR)document.getElementById('hr-sidebar-count').style.display='flex';}
-    showToast('Switched role',`Now viewing as ${ro.n} (${ro.role})`,'info');
-  }
-
-  document.addEventListener('click',function(e){
-    const sw=document.getElementById('role-switcher');
-    if(!sw.contains(e.target)&&!document.getElementById('role-tag-btn').contains(e.target))sw.classList.remove('open');
+  /* ── ROLE SWITCHER ── */
+  function toggleRS() { document.getElementById('rs').classList.toggle('open'); }
+  document.addEventListener('click', e => {
+    const rs = document.getElementById('rs');
+    if (!rs.contains(e.target) && !document.getElementById('rtag').contains(e.target)) rs.classList.remove('open');
   });
 </script>
 </body>
