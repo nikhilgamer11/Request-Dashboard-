@@ -1,0 +1,857 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trident Energy — Learning &amp; Development Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+:root {
+  --te-navy:       #0B2748;
+  --te-navy-mid:   #0e3260;
+  --te-navy-dark:  #071c34;
+  --te-teal:       #00A99D;
+  --te-teal-dark:  #008a7f;
+  --te-teal-light: #e0f6f5;
+  --te-teal-text:  #006b63;
+  --surface:       #f4f6f9;
+  --border:        #d8dce6;
+  --border-light:  #e8ebf2;
+  --text:          #0f1923;
+  --text-2:        #3d4d5c;
+  --text-3:        #8a97a6;
+  --white:         #ffffff;
+  --amber:         #c47d0e;
+  --amber-light:   #fef3dc;
+  --amber-text:    #7a4e07;
+  --blue:          #1a5eb5;
+  --blue-light:    #e3edf9;
+  --blue-text:     #0e3d7a;
+  --red:           #b83232;
+  --red-light:     #fdeaea;
+  --red-text:      #7a1f1f;
+  --purple:        #5b3ea8;
+  --purple-light:  #eeebfc;
+  --purple-text:   #3a2570;
+  --green:         #1e8a55;
+  --green-light:   #e2f5ec;
+  --green-text:    #125c38;
+  --radius:        10px;
+  --radius-lg:     14px;
+  --shadow-sm:     0 1px 3px rgba(0,0,0,0.08);
+  --shadow:        0 4px 14px rgba(0,0,0,0.09);
+  --shadow-lg:     0 12px 32px rgba(0,0,0,0.12);
+}
+
+
+html { font-size: 15px; }
+body { font-family: 'Open Sans', sans-serif; background: var(--surface); color: var(--text); min-height: 100vh; line-height: 1.6; }
+
+
+.topbar {
+  background: var(--te-navy);
+  padding: 0 2rem;
+  display: flex; align-items: center;
+  height: 62px; gap: 14px;
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 3px solid var(--te-teal);
+}
+.logo-wordmark { display: flex; flex-direction: column; line-height: 1.15; }
+.logo-wordmark-top { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; }
+.logo-wordmark-bottom { font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--te-teal); }
+.topbar-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.18); margin: 0 6px; }
+.topbar-product { font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.05em; }
+.topbar-right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.notif-btn {
+  position: relative;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  width: 36px; height: 36px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.notif-btn:hover { background: rgba(255,255,255,0.15); }
+.notif-btn svg { width: 17px; height: 17px; stroke: rgba(255,255,255,0.8); }
+.notif-badge {
+  position: absolute; top: -3px; right: -3px;
+  width: 17px; height: 17px;
+  background: var(--te-teal); border-radius: 50%;
+  font-size: 9px; color: var(--te-navy); font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--te-navy);
+  font-family: 'Montserrat', sans-serif;
+}
+.user-chip {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 22px; padding: 5px 12px 5px 6px;
+}
+.avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--te-teal);
+  font-size: 10px; font-weight: 700; color: var(--te-navy);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+}
+.user-chip span { font-size: 12.5px; color: rgba(255,255,255,0.85); }
+.role-tag {
+  font-size: 10px; font-family: 'Montserrat', sans-serif; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  background: rgba(0,169,157,0.18); border: 1px solid rgba(0,169,157,0.35);
+  border-radius: 4px; padding: 3px 9px; color: var(--te-teal);
+  cursor: pointer; transition: background 0.15s;
+}
+.role-tag:hover { background: rgba(0,169,157,0.28); }
+
+
+.layout { display: flex; min-height: calc(100vh - 62px); }
+
+
+.sidebar {
+  width: 225px; flex-shrink: 0;
+  background: var(--white); border-right: 1px solid var(--border-light);
+  padding: 1.5rem 0;
+  position: sticky; top: 62px;
+  height: calc(100vh - 62px); overflow-y: auto;
+}
+.sidebar-brand-strip {
+  margin: 0 1rem 1.25rem;
+  padding: 10px 12px;
+  background: var(--te-navy); border-radius: var(--radius);
+  display: flex; align-items: center; gap: 10px;
+}
+.sb-icon { width: 28px; height: 28px; background: rgba(0,169,157,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.sb-icon svg { width: 14px; height: 14px; }
+.sb-text { font-size: 11px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+.sb-text strong { display: block; color: #fff; font-size: 12px; font-weight: 600; font-family: 'Montserrat', sans-serif; }
+.sidebar-section { padding: 0 1rem; margin-bottom: 1.5rem; }
+.sidebar-label {
+  font-size: 10px; font-weight: 700; color: var(--text-3);
+  letter-spacing: 0.09em; text-transform: uppercase;
+  padding: 0 0.5rem; margin-bottom: 6px;
+  font-family: 'Montserrat', sans-serif;
+}
+.sidebar-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 8px;
+  font-size: 13.5px; color: var(--text-2);
+  cursor: pointer; transition: all 0.12s;
+  border: none; background: none; width: 100%; text-align: left;
+  font-family: 'Open Sans', sans-serif;
+}
+.sidebar-link:hover { background: var(--surface); color: var(--text); }
+.sidebar-link.active { background: var(--te-teal-light); color: var(--te-teal-text); font-weight: 600; }
+.sidebar-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+.sidebar-count {
+  margin-left: auto; background: var(--te-navy); color: #fff;
+  font-size: 10px; font-weight: 700; border-radius: 10px;
+  padding: 1px 7px; min-width: 20px; text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+.sidebar-count.teal { background: var(--te-teal); color: var(--te-navy); }
+.sidebar-count.amber { background: var(--amber); }
+.sidebar-count.red { background: #ef4444; }
+
+
+.main { flex: 1; padding: 2rem 2.5rem; max-width: 840px; }
+.page-header { margin-bottom: 1.75rem; animation: fadeUp 0.3s ease both; }
+.page-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--te-teal); margin-bottom: 5px; }
+.page-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: var(--te-navy); margin-bottom: 5px; letter-spacing: -0.01em; }
+.page-sub { font-size: 13.5px; color: var(--text-2); }
+
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+
+.view { display: none; animation: fadeUp 0.25s ease both; }
+.view.active { display: block; }
+
+
+.form-card {
+  background: var(--white); border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  box-shadow: var(--shadow-sm); margin-bottom: 1rem;
+}
+.form-section-title {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--te-navy);
+  margin-bottom: 1rem; padding-bottom: 8px;
+  border-bottom: 2px solid var(--te-teal-light);
+  display: flex; align-items: center; gap: 8px;
+}
+.form-section-title::before { content:''; display:inline-block; width:3px; height:14px; background:var(--te-teal); border-radius:2px; }
+.field { margin-bottom: 1.1rem; }
+.field:last-child { margin-bottom: 0; }
+label { display: block; font-size: 12.5px; font-weight: 600; color: var(--text-2); margin-bottom: 5px; font-family: 'Montserrat', sans-serif; }
+label .req { color: var(--te-teal); margin-left: 2px; }
+input[type=text], input[type=email], input[type=number], select, textarea {
+  width: 100%; padding: 9px 12px;
+  font-family: 'Open Sans', sans-serif; font-size: 14px;
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  background: var(--white); color: var(--text); outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--te-teal); box-shadow: 0 0 0 3px rgba(0,169,157,0.12); }
+textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+
+.btn-row { display: flex; gap: 10px; margin-top: 1.5rem; align-items: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 22px; border-radius: var(--radius);
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 0.03em; cursor: pointer; border: none; transition: all 0.15s;
+}
+.btn svg { width: 15px; height: 15px; }
+.btn-primary { background: var(--te-teal); color: var(--te-navy); }
+.btn-primary:hover { background: var(--te-teal-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,169,157,0.3); }
+.btn-ghost { background: var(--white); color: var(--text-2); border: 1.5px solid var(--border); font-weight: 500; font-size: 13.5px; }
+.btn-ghost:hover { background: var(--surface); }
+.btn-approve { background: var(--green); color: #fff; }
+.btn-approve:hover { background: var(--green-text); }
+.btn-decline { background: var(--white); color: var(--text-2); border: 1.5px solid var(--border); font-size: 13.5px; font-weight: 500; }
+.btn-decline:hover { background: var(--red-light); color: var(--red-text); border-color: #f5b8b8; }
+.btn-sm { padding: 7px 15px; font-size: 12px; }
+
+
+.toast-area { position: fixed; top: 76px; right: 1.5rem; z-index: 999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 14px 18px;
+  box-shadow: var(--shadow-lg);
+  display: flex; align-items: flex-start; gap: 12px;
+  max-width: 330px; pointer-events: all;
+  animation: slideIn 0.3s cubic-bezier(0.16,1,0.3,1) both;
+  border-left: 3px solid var(--te-teal);
+}
+.toast.warn { border-left-color: var(--amber); }
+.toast.info { border-left-color: var(--blue); }
+@keyframes slideIn { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
+@keyframes slideOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(20px); } }
+.toast-icon svg { width: 18px; height: 18px; }
+.toast-body { font-size: 13px; line-height: 1.5; }
+.toast-title { font-weight: 700; color: var(--te-navy); margin-bottom: 2px; font-family: 'Montserrat', sans-serif; font-size: 12.5px; }
+.toast-msg { color: var(--text-2); }
+
+
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 700; white-space: nowrap; font-family: 'Montserrat', sans-serif; }
+.badge-pending  { background: var(--amber-light);  color: var(--amber-text); }
+.badge-mgr      { background: var(--blue-light);   color: var(--blue-text); }
+.badge-hr       { background: var(--purple-light);  color: var(--purple-text); }
+.badge-approved { background: var(--te-teal-light); color: var(--te-teal-text); }
+.badge-done     { background: var(--green-light);   color: var(--green-text); }
+.badge-declined { background: var(--red-light);     color: var(--red-text); }
+
+
+.req-card {
+  background: var(--white); border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg); padding: 1.25rem 1.5rem;
+  margin-bottom: 12px; box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s; border-top: 3px solid var(--te-teal);
+}
+.req-card:hover { box-shadow: var(--shadow); }
+.req-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.req-card-title { font-size: 15px; font-weight: 600; color: var(--te-navy); font-family: 'Montserrat', sans-serif; }
+.req-card-meta { font-size: 12.5px; color: var(--text-2); margin-top: 3px; }
+
+
+.progress-wrap { margin: 14px 0; }
+.progress-steps { display: flex; align-items: flex-start; }
+.prog-step { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+.prog-step::after { content:''; position:absolute; top:13px; left:50%; width:100%; height:2px; background:var(--border); z-index:0; }
+.prog-step:last-child::after { display: none; }
+.prog-dot {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid var(--border); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--text-3);
+  position: relative; z-index: 1; transition: all 0.25s;
+  font-family: 'Montserrat', sans-serif;
+}
+.prog-dot.done { background: var(--te-teal); border-color: var(--te-teal); color: var(--te-navy); }
+.prog-dot.active { background: var(--te-navy); border-color: var(--te-navy); color: #fff; }
+.prog-step.done::after { background: var(--te-teal); }
+.prog-step-label { font-size: 10.5px; color: var(--text-3); margin-top: 7px; text-align: center; font-family: 'Montserrat', sans-serif; }
+.prog-step-label.done { color: var(--te-teal-text); font-weight: 600; }
+.prog-step-label.active { color: var(--te-navy); font-weight: 700; }
+
+
+.detail-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 10px; }
+.detail-item { font-size: 13px; }
+.detail-label { color: var(--text-3); margin-right: 4px; }
+.detail-val { color: var(--te-navy); font-weight: 600; }
+.action-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-light); }
+.action-spacer { flex: 1; }
+.action-time { font-size: 12px; color: var(--text-3); }
+.quote-block { font-size: 13.5px; color: var(--text-2); background: var(--surface); border-radius: 8px; padding: 10px 14px; margin-top: 4px; line-height: 1.7; border-left: 3px solid var(--te-teal); }
+
+
+.notif-item { display: flex; gap: 14px; padding: 1rem 1.25rem; background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); margin-bottom: 8px; box-shadow: var(--shadow-sm); }
+.notif-item.unread { border-left: 3px solid var(--te-teal); }
+.notif-dot-indicator { width: 9px; height: 9px; border-radius: 50%; background: var(--te-teal); flex-shrink: 0; margin-top: 6px; }
+.notif-dot-indicator.read { background: var(--border); }
+.notif-content { flex: 1; }
+.notif-title { font-size: 13.5px; font-weight: 700; color: var(--te-navy); margin-bottom: 3px; font-family: 'Montserrat', sans-serif; }
+.notif-body { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.notif-time { font-size: 11.5px; color: var(--text-3); margin-top: 4px; }
+
+
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+.stat-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.25rem; box-shadow: var(--shadow-sm); border-top: 3px solid var(--te-teal); }
+.stat-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--te-teal-light); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+.stat-icon svg { width: 18px; height: 18px; stroke: var(--te-teal); }
+.stat-val { font-size: 27px; font-weight: 700; color: var(--te-navy); line-height: 1; margin-bottom: 4px; font-family: 'Montserrat', sans-serif; }
+.stat-label { font-size: 12.5px; color: var(--text-2); font-weight: 600; font-family: 'Montserrat', sans-serif; }
+.stat-sub { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
+
+
+.report-table { width: 100%; border-collapse: collapse; }
+.report-table th { text-align: left; font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--te-navy); padding: 10px 14px; border-bottom: 2px solid var(--te-teal); background: var(--surface); font-family: 'Montserrat', sans-serif; }
+.report-table td { padding: 12px 14px; font-size: 13.5px; border-bottom: 1px solid var(--border-light); color: var(--text); }
+.report-table tr:hover td { background: var(--te-teal-light); }
+.report-table td.muted { color: var(--text-2); }
+
+
+.empty-state { text-align: center; padding: 3rem 2rem; color: var(--text-3); }
+.empty-state svg { width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.4; }
+.empty-state p { font-size: 14px; }
+
+
+.role-switcher { display: none; position: fixed; top: 62px; right: 0; background: var(--white); border: 1px solid var(--border); border-radius: 0 0 0 var(--radius-lg); box-shadow: var(--shadow-lg); z-index: 200; overflow: hidden; animation: fadeUp 0.15s ease both; min-width: 220px; }
+.role-switcher.open { display: block; }
+.role-switcher-header { padding: 10px 16px 8px; background: var(--te-navy); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.role-option { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; transition: background 0.12s; border: none; background: none; width: 100%; text-align: left; border-bottom: 1px solid var(--border-light); }
+.role-option:last-child { border-bottom: none; }
+.role-option:hover { background: var(--surface); }
+.role-option.current { background: var(--te-teal-light); }
+.role-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; font-family: 'Montserrat', sans-serif; }
+.role-option-name { font-size: 13.5px; font-weight: 600; color: var(--te-navy); font-family: 'Montserrat', sans-serif; }
+.role-option-role { font-size: 12px; color: var(--text-2); }
+
+
+@media (max-width: 700px) {
+  .sidebar { display: none; }
+  .main { padding: 1.25rem; }
+  .row2, .row3 { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="topbar">
+  <!-- Trident Energy logomark: geometric trident (3 prongs + crossbar + shaft) -->
+  <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+    <rect x="16" y="17" width="4" height="21" rx="1.5" fill="#00A99D"/>
+    <rect x="16" y="2" width="4" height="14" rx="1" fill="#ffffff"/>
+    <polygon points="18,0 21.5,6 14.5,6" fill="#ffffff"/>
+    <rect x="6.5" y="6" width="3.2" height="11" rx="1" fill="rgba(255,255,255,0.65)"/>
+    <polygon points="8.1,4.5 10.6,9 5.6,9" fill="rgba(255,255,255,0.65)"/>
+    <rect x="26.3" y="6" width="3.2" height="11" rx="1" fill="rgba(255,255,255,0.65)"/>
+    <polygon points="27.9,4.5 30.4,9 25.4,9" fill="rgba(255,255,255,0.65)"/>
+    <rect x="6.5" y="16" width="23" height="2.8" rx="1.4" fill="#00A99D"/>
+  </svg>
+  <div class="logo-wordmark">
+    <span class="logo-wordmark-top">Trident</span>
+    <span class="logo-wordmark-bottom">Energy</span>
+  </div>
+  <div class="topbar-divider"></div>
+  <span class="topbar-product">Learning &amp; Development Portal</span>
+  <div class="topbar-right">
+    <button class="notif-btn" onclick="switchView('notifs'); updateNotifBadge()" title="Notifications">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <span class="notif-badge" id="topbar-notif-badge">1</span>
+    </button>
+    <div class="user-chip">
+      <div class="avatar" id="topbar-avatar">SR</div>
+      <span id="topbar-name">Sam Riley</span>
+    </div>
+    <button class="role-tag" onclick="toggleRoleSwitcher()" id="role-tag-btn">Learner ▾</button>
+  </div>
+</header>
+
+
+<div class="role-switcher" id="role-switcher">
+  <div class="role-switcher-header">Switch role</div>
+  <button class="role-option current" onclick="switchRole('learner')">
+    <div class="role-avatar" style="background:var(--te-navy);">SR</div>
+    <div><div class="role-option-name">Sam Riley</div><div class="role-option-role">Learner</div></div>
+  </button>
+  <button class="role-option" onclick="switchRole('manager')">
+    <div class="role-avatar" style="background:var(--te-teal);color:var(--te-navy);">JO</div>
+    <div><div class="role-option-name">James Okafor</div><div class="role-option-role">Manager</div></div>
+  </button>
+  <button class="role-option" onclick="switchRole('hr')">
+    <div class="role-avatar" style="background:#5b3ea8;">PN</div>
+    <div><div class="role-option-name">Priya Nair</div><div class="role-option-role">HR Business Partner</div></div>
+  </button>
+</div>
+
+
+<div class="toast-area" id="toast-area"></div>
+
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand-strip">
+      <div class="sb-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--te-teal)" stroke-width="2.5" stroke-linecap="round">
+          <line x1="12" y1="2" x2="12" y2="22"/><line x1="7" y1="6" x2="17" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="10"/><line x1="16" y1="2" x2="16" y2="10"/>
+        </svg>
+      </div>
+      <div class="sb-text"><strong>L&amp;D Portal</strong>External course requests</div>
+    </div>
+
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">My learning</div>
+      <button class="sidebar-link active" onclick="switchView('submit')" id="nav-submit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        Submit request
+      </button>
+      <button class="sidebar-link" onclick="switchView('myrequests')" id="nav-myrequests">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        My requests
+      </button>
+      <button class="sidebar-link" onclick="switchView('notifs')" id="nav-notifs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Notifications
+        <span class="sidebar-count red" id="notif-sidebar-count">1</span>
+      </button>
+    </div>
+
+
+    <div class="sidebar-section" id="approval-section" style="display:none;">
+      <div class="sidebar-label">Approvals</div>
+      <button class="sidebar-link" onclick="switchView('manager')" id="nav-manager">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Manager review
+        <span class="sidebar-count teal" id="mgr-sidebar-count" style="display:none;">1</span>
+      </button>
+      <button class="sidebar-link" onclick="switchView('hr')" id="nav-hr">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        HR approval
+        <span class="sidebar-count amber" id="hr-sidebar-count" style="display:none;">1</span>
+      </button>
+    </div>
+
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Analytics</div>
+      <button class="sidebar-link" onclick="switchView('report')" id="nav-report">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Spend report
+      </button>
+    </div>
+  </nav>
+
+
+  <main class="main">
+
+
+    <div class="view active" id="view-submit">
+      <div class="page-header">
+        <div class="page-eyebrow">Learning &amp; Development</div>
+        <div class="page-title">Request an external course</div>
+        <div class="page-sub">Submit a course for manager and HR approval. Once approved, costs are reimbursed or invoiced to the L&amp;D budget.</div>
+      </div>
+      <div class="form-card">
+        <div class="form-section-title">Course details</div>
+        <div class="field"><label>Course name <span class="req">*</span></label><input type="text" id="f-course" placeholder="e.g. AWS Solutions Architect — Associate"></div>
+        <div class="row2">
+          <div class="field"><label>Provider / platform <span class="req">*</span></label><input type="text" id="f-provider" placeholder="e.g. Coursera, BCS, Udemy"></div>
+          <div class="field"><label>Course URL</label><input type="text" id="f-url" placeholder="https://..."></div>
+        </div>
+        <div class="row3">
+          <div class="field"><label>Cost (£) <span class="req">*</span></label><input type="number" id="f-cost" placeholder="495" min="0"></div>
+          <div class="field"><label>Start date</label><input type="text" id="f-start" placeholder="01 Jul 2026"></div>
+          <div class="field"><label>Duration</label><input type="text" id="f-duration" placeholder="3 days / 40 hrs"></div>
+        </div>
+        <div class="field"><label>Delivery format</label>
+          <select id="f-delivery"><option>Online — self-paced</option><option>Online — instructor-led</option><option>In-person</option><option>Blended</option></select>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="form-section-title">Business justification</div>
+        <div class="field"><label>How does this course support your role and team goals? <span class="req">*</span></label><textarea id="f-justification" placeholder="Describe the business case — skills gap, upcoming project, certification required..."></textarea></div>
+        <div class="field"><label>Expected outcome after completion</label><input type="text" id="f-outcome" placeholder="e.g. Achieve AWS certification by Q3, support cloud migration project"></div>
+        <div class="field"><label>Will you share learning with the team?</label>
+          <select id="f-share"><option>Yes — lunch and learn session</option><option>Yes — written summary / notes</option><option>No — individual role requirement</option></select>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="submitRequest()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Submit for approval
+          </button>
+          <button class="btn btn-ghost" onclick="prefill()">Demo prefill</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="view" id="view-myrequests">
+      <div class="page-header">
+        <div class="page-eyebrow">My learning</div>
+        <div class="page-title">My requests</div>
+        <div class="page-sub">Track the status of your submitted course requests.</div>
+      </div>
+      <div id="my-requests-list">
+        <div class="empty-state" id="my-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          <p>No requests yet. Submit a course to get started.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="view" id="view-manager">
+      <div class="page-header">
+        <div class="page-eyebrow">Approvals</div>
+        <div class="page-title">Manager review</div>
+        <div class="page-sub">Course requests from your team awaiting your decision before escalation to HR.</div>
+      </div>
+      <div id="mgr-list">
+        <div class="empty-state" id="mgr-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <p>No pending requests for your review.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="view" id="view-hr">
+      <div class="page-header">
+        <div class="page-eyebrow">Approvals</div>
+        <div class="page-title">HR final approval</div>
+        <div class="page-sub">Manager-approved requests awaiting HR sign-off and budget confirmation.</div>
+      </div>
+      <div id="hr-list">
+        <div class="empty-state" id="hr-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <p>No requests pending HR review.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="view" id="view-notifs">
+      <div class="page-header">
+        <div class="page-eyebrow">My account</div>
+        <div class="page-title">Notifications</div>
+        <div class="page-sub">Status updates on your requests and approvals.</div>
+      </div>
+      <div id="notif-list"></div>
+    </div>
+
+
+    <div class="view" id="view-report">
+      <div class="page-header">
+        <div class="page-eyebrow">Analytics</div>
+        <div class="page-title">L&amp;D spend report</div>
+        <div class="page-sub">External course requests — 2026 year to date</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+          <div class="stat-val" id="stat-total">4</div>
+          <div class="stat-label">Total requests</div>
+          <div class="stat-sub">this year</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div class="stat-val" id="stat-spend">£2,340</div>
+          <div class="stat-label">Approved spend</div>
+          <div class="stat-sub">of £8,000 annual budget</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="stat-val" id="stat-rate">75%</div>
+          <div class="stat-label">Approval rate</div>
+          <div class="stat-sub" id="stat-rate-sub">3 of 4 approved</div>
+        </div>
+      </div>
+      <div class="form-card" style="padding:0;overflow:hidden;">
+        <table class="report-table">
+          <thead><tr><th>Course</th><th>Employee</th><th>Provider</th><th>Cost</th><th>Status</th><th>Date</th></tr></thead>
+          <tbody id="report-tbody">
+            <tr><td>PRINCE2 Project Management</td><td class="muted">D. Nwosu</td><td class="muted">AXELOS</td><td>£850</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">Mar 2026</td></tr>
+            <tr><td>Python for Data Analysis</td><td class="muted">L. Chen</td><td class="muted">Coursera</td><td>£299</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">Feb 2026</td></tr>
+            <tr><td>GDPR Practitioner Certificate</td><td class="muted">A. Patel</td><td class="muted">IAPP</td><td>£1,191</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">Jan 2026</td></tr>
+            <tr><td>Agile Scrum Master</td><td class="muted">T. Moore</td><td class="muted">Scrum Alliance</td><td>£399</td><td><span class="badge badge-declined">Declined</span></td><td class="muted">Jan 2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </main>
+</div>
+
+
+<script>
+  let currentRole='learner', notifications=[], pendingMgr=false, pendingHR=false, submittedData=null;
+  let approvedCount=3, totalCount=4, totalSpend=2340, notifUnread=1;
+
+
+  addNotification('Welcome to the L&D Portal','Your account is set up. Submit a new course request to get started.','info','2 days ago');
+  renderNotifications();
+
+
+  function switchView(id){
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.querySelectorAll('.sidebar-link').forEach(l=>l.classList.remove('active'));
+    document.getElementById('view-'+id).classList.add('active');
+    const nav=document.getElementById('nav-'+id); if(nav)nav.classList.add('active');
+    if(id==='notifs'){notifUnread=0;updateNotifBadge();document.querySelectorAll('.notif-dot-indicator').forEach(d=>d.classList.add('read'));}
+  }
+
+
+  function prefill(){
+    document.getElementById('f-course').value='AWS Solutions Architect — Associate';
+    document.getElementById('f-provider').value='Coursera';
+    document.getElementById('f-url').value='https://www.coursera.org/aws-solutions-architect';
+    document.getElementById('f-cost').value='495';
+    document.getElementById('f-start').value='01 Jul 2026';
+    document.getElementById('f-duration').value='40 hours online';
+    document.getElementById('f-justification').value='This certification will support the APAC cloud migration project and aligns with Q3 team upskilling targets. I will be leading the infrastructure workstream and AWS certification is a prerequisite for the project committee.';
+    document.getElementById('f-outcome').value='AWS certified by Q3; leading cloud infrastructure workstream';
+  }
+
+
+  function submitRequest(){
+    const d={
+      course:document.getElementById('f-course').value||'AWS Solutions Architect — Associate',
+      provider:document.getElementById('f-provider').value||'Coursera',
+      cost:document.getElementById('f-cost').value||'495',
+      justification:document.getElementById('f-justification').value||'Supports upcoming project workstream.',
+      delivery:document.getElementById('f-delivery').value,
+      start:document.getElementById('f-start').value||'01 Jul 2026',
+      duration:document.getElementById('f-duration').value||'40 hours'
+    };
+    submittedData=d; pendingMgr=true;
+    document.getElementById('mgr-sidebar-count').style.display='flex';
+    document.getElementById('mgr-empty').style.display='none';
+    renderMgrCard(); renderMyRequests('pending');
+    addNotification('Request submitted',`Your request for <strong>${d.course}</strong> has been received and sent to your manager for review.`,'success','Just now');
+    notifUnread++; updateNotifBadge();
+    showToast('Request submitted',`Sent to James Okafor for review.`,'success');
+    switchView('myrequests');
+  }
+
+
+  function renderMgrCard(){
+    const d=submittedData;
+    document.getElementById('mgr-list').innerHTML=`
+      <div class="req-card">
+        <div class="req-card-top">
+          <div><div class="req-card-title">${d.course}</div><div class="req-card-meta">Sam Riley &nbsp;·&nbsp; ${d.provider} &nbsp;·&nbsp; ${d.start}</div></div>
+          <span class="badge badge-pending">Pending review</span>
+        </div>
+        ${renderProgress(1)}
+        <div class="detail-row">
+          <span class="detail-item"><span class="detail-label">Cost:</span><span class="detail-val"> £${d.cost}</span></span>
+          <span class="detail-item"><span class="detail-label">Format:</span><span class="detail-val"> ${d.delivery}</span></span>
+          <span class="detail-item"><span class="detail-label">Duration:</span><span class="detail-val"> ${d.duration}</span></span>
+        </div>
+        <div class="quote-block">"${d.justification}"</div>
+        <div class="action-row">
+          <button class="btn btn-approve btn-sm" onclick="mgrApprove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Approve</button>
+          <button class="btn btn-decline btn-sm" onclick="mgrDecline()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Decline</button>
+          <span class="action-spacer"></span><span class="action-time">Submitted just now</span>
+        </div>
+      </div>`;
+  }
+
+
+  function mgrApprove(){
+    const d=submittedData; pendingMgr=false; pendingHR=true;
+    document.getElementById('mgr-sidebar-count').style.display='none';
+    document.getElementById('mgr-list').innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="var(--te-teal)" stroke-width="1.5" width="40" height="40"><polyline points="20 6 9 17 4 12"/></svg><p style="color:var(--te-teal-text);font-weight:600;">All reviews complete.</p></div>`;
+    document.getElementById('hr-sidebar-count').style.display='flex';
+    renderHRCard(); renderMyRequests('hr');
+    addNotification('Manager approved',`James Okafor approved your request for <strong>${d.course}</strong>. Forwarded to HR for final sign-off.`,'success','Just now');
+    notifUnread++; updateNotifBadge();
+    showToast('Approved — forwarded to HR','James Okafor signed off.','success');
+    switchView('hr');
+  }
+
+
+  function mgrDecline(){
+    const d=submittedData; pendingMgr=false;
+    document.getElementById('mgr-sidebar-count').style.display='none';
+    document.getElementById('mgr-list').innerHTML=`<div class="empty-state"><p>No pending requests.</p></div>`;
+    renderMyRequests('declined');
+    addNotification('Request not approved',`Your request for <strong>${d.course}</strong> was declined by your manager. Contact James Okafor for more information.`,'warn','Just now');
+    notifUnread++; updateNotifBadge();
+    showToast('Request declined','Contact James Okafor for details.','warn');
+    switchView('myrequests');
+  }
+
+
+  function renderHRCard(){
+    const d=submittedData;
+    document.getElementById('hr-list').innerHTML=`
+      <div class="req-card">
+        <div class="req-card-top">
+          <div><div class="req-card-title">${d.course}</div><div class="req-card-meta">Sam Riley &nbsp;·&nbsp; Approved by: James Okafor (Manager)</div></div>
+          <span class="badge badge-mgr">Manager approved</span>
+        </div>
+        ${renderProgress(2)}
+        <div class="detail-row">
+          <span class="detail-item"><span class="detail-label">Cost:</span><span class="detail-val"> £${d.cost}</span></span>
+          <span class="detail-item"><span class="detail-label">Budget code:</span><span class="detail-val"> L&D-2026-Q3</span></span>
+          <span class="detail-item"><span class="detail-label">Format:</span><span class="detail-val"> ${d.delivery}</span></span>
+        </div>
+        <div class="quote-block">"${d.justification}"</div>
+        <div class="action-row">
+          <button class="btn btn-approve btn-sm" onclick="hrApprove()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Final approval</button>
+          <button class="btn btn-decline btn-sm" onclick="hrDecline()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="14" height="14"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Decline</button>
+          <span class="action-spacer"></span><span class="action-time">Forwarded by manager</span>
+        </div>
+      </div>`;
+  }
+
+
+  function hrApprove(){
+    const d=submittedData; pendingHR=false;
+    document.getElementById('hr-sidebar-count').style.display='none';
+    document.getElementById('hr-list').innerHTML=`<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="var(--te-teal)" stroke-width="1.5" width="40" height="40"><polyline points="20 6 9 17 4 12"/></svg><p style="color:var(--te-teal-text);font-weight:600;">All requests processed.</p></div>`;
+    renderMyRequests('approved');
+    addNotification('Course fully approved!',`Your request for <strong>${d.course}</strong> has been approved by HR. Budget code: L&D-2026-Q3. Check your email for booking details.`,'success','Just now');
+    notifUnread++; updateNotifBadge();
+    showToast('Fully approved!',`${d.course} confirmed. Budget: L&D-2026-Q3.`,'success');
+    approvedCount++; totalCount++; totalSpend+=parseInt(d.cost)||495;
+    updateReport(d); switchView('notifs');
+  }
+
+
+  function hrDecline(){
+    const d=submittedData; pendingHR=false;
+    document.getElementById('hr-sidebar-count').style.display='none';
+    document.getElementById('hr-list').innerHTML=`<div class="empty-state"><p>No pending HR approvals.</p></div>`;
+    renderMyRequests('declined');
+    addNotification('Request declined by HR',`Your request for <strong>${d.course}</strong> was not approved at HR stage. Contact Priya Nair for details.`,'warn','Just now');
+    notifUnread++; updateNotifBadge();
+    showToast('Declined by HR','Contact Priya Nair for details.','warn');
+    switchView('notifs');
+  }
+
+
+  function renderMyRequests(status){
+    const d=submittedData;
+    const stageMap={pending:1,hr:2,approved:3,declined:1};
+    const labels={pending:'Awaiting manager review',hr:'Awaiting HR approval',approved:'Approved — booking confirmed',declined:'Request declined'};
+    document.getElementById('my-empty').style.display='none';
+    document.getElementById('my-requests-list').innerHTML=`
+      <div class="req-card">
+        <div class="req-card-top">
+          <div><div class="req-card-title">${d.course}</div><div class="req-card-meta">${d.provider} &nbsp;·&nbsp; ${d.start} &nbsp;·&nbsp; £${d.cost}</div></div>
+          ${status==='approved'?'<span class="badge badge-approved">Approved</span>':status==='declined'?'<span class="badge badge-declined">Declined</span>':status==='hr'?'<span class="badge badge-hr">HR review</span>':'<span class="badge badge-pending">Pending</span>'}
+        </div>
+        ${renderProgress(stageMap[status]||1)}
+        <div style="font-size:13px;color:var(--text-2);margin-top:4px;">${labels[status]}</div>
+      </div>`;
+  }
+
+
+  function renderProgress(activeStep){
+    const steps=['Submitted','Manager','HR','Confirmed'];
+    return `<div class="progress-wrap"><div class="progress-steps">${steps.map((s,i)=>`
+      <div class="prog-step ${i<activeStep?'done':''}">
+        <div class="prog-dot ${i<activeStep?'done':i===activeStep?'active':''}">
+          ${i<activeStep?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg>':i+1}
+        </div>
+        <div class="prog-step-label ${i<activeStep?'done':i===activeStep?'active':''}">${s}</div>
+      </div>`).join('')}</div></div>`;
+  }
+
+
+  function addNotification(title,body,type,time){notifications.unshift({title,body,type,time,read:false});renderNotifications();}
+
+
+  function renderNotifications(){
+    const list=document.getElementById('notif-list');
+    if(!notifications.length){list.innerHTML=`<div class="empty-state"><p>No notifications yet.</p></div>`;return;}
+    list.innerHTML=notifications.map((n,i)=>`
+      <div class="notif-item ${!n.read?'unread':''}" onclick="markRead(${i})">
+        <div class="notif-dot-indicator ${n.read?'read':''}"></div>
+        <div class="notif-content">
+          <div class="notif-title">${n.title}</div>
+          <div class="notif-body">${n.body}</div>
+          <div class="notif-time">${n.time}</div>
+        </div>
+      </div>`).join('');
+  }
+
+
+  function markRead(i){notifications[i].read=true;renderNotifications();}
+
+
+  function updateNotifBadge(){
+    const b=document.getElementById('topbar-notif-badge'),sc=document.getElementById('notif-sidebar-count');
+    if(notifUnread>0){b.style.display='flex';b.textContent=notifUnread;sc.style.display='flex';sc.textContent=notifUnread;}
+    else{b.style.display='none';sc.style.display='none';}
+  }
+
+
+  function updateReport(d){
+    document.getElementById('stat-total').textContent=totalCount;
+    document.getElementById('stat-spend').textContent='£'+totalSpend.toLocaleString();
+    document.getElementById('stat-rate').textContent=Math.round(approvedCount/totalCount*100)+'%';
+    document.getElementById('stat-rate-sub').textContent=`${approvedCount} of ${totalCount} approved`;
+    const row=document.createElement('tr');
+    row.innerHTML=`<td>${d.course}</td><td class="muted">S. Riley</td><td class="muted">${d.provider}</td><td>£${d.cost}</td><td><span class="badge badge-approved">Approved</span></td><td class="muted">May 2026</td>`;
+    document.getElementById('report-tbody').insertBefore(row,document.getElementById('report-tbody').firstChild);
+  }
+
+
+  function showToast(title,msg,type){
+    const area=document.getElementById('toast-area'),t=document.createElement('div');
+    t.className='toast '+(type==='warn'?'warn':type==='info'?'info':'');
+    const ic=type==='warn'?'#c47d0e':type==='info'?'#1a5eb5':'#00A99D';
+    t.innerHTML=`<div class="toast-icon"><svg viewBox="0 0 24 24" fill="none" stroke="${ic}" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><div class="toast-body"><div class="toast-title">${title}</div><div class="toast-msg">${msg}</div></div>`;
+    area.appendChild(t);
+    setTimeout(()=>{t.style.animation='slideOut 0.25s ease forwards';setTimeout(()=>t.remove(),260);},4200);
+  }
+
+
+  function toggleRoleSwitcher(){document.getElementById('role-switcher').classList.toggle('open');}
+
+
+  function switchRole(r){
+    currentRole=r;
+    const roles={learner:{i:'SR',n:'Sam Riley',role:'Learner',bg:'var(--te-navy)',c:'#fff'},manager:{i:'JO',n:'James Okafor',role:'Manager',bg:'var(--te-teal)',c:'var(--te-navy)'},hr:{i:'PN',n:'Priya Nair',role:'HR Business Partner',bg:'#5b3ea8',c:'#fff'}};
+    const ro=roles[r];
+    const av=document.getElementById('topbar-avatar');
+    av.textContent=ro.i; av.style.background=ro.bg; av.style.color=ro.c;
+    document.getElementById('topbar-name').textContent=ro.n;
+    document.getElementById('role-tag-btn').textContent=ro.role+' ▾';
+    document.querySelectorAll('.role-option').forEach(o=>o.classList.remove('current'));
+    ['learner','manager','hr'].forEach((x,i)=>{if(x===r)document.querySelectorAll('.role-option')[i].classList.add('current');});
+    toggleRoleSwitcher();
+    const as=document.getElementById('approval-section');
+    if(r==='learner'){as.style.display='none';switchView('submit');}
+    else if(r==='manager'){as.style.display='block';switchView('manager');if(pendingMgr)document.getElementById('mgr-sidebar-count').style.display='flex';}
+    else if(r==='hr'){as.style.display='block';switchView('hr');if(pendingHR)document.getElementById('hr-sidebar-count').style.display='flex';}
+    showToast('Switched role',`Now viewing as ${ro.n} (${ro.role})`,'info');
+  }
+
+
+  document.addEventListener('click',function(e){
+    const sw=document.getElementById('role-switcher');
+    if(!sw.contains(e.target)&&!document.getElementById('role-tag-btn').contains(e.target))sw.classList.remove('open');
+  });
+</script>
+</body>
+</html>
