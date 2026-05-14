@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 
 :root {
   --te-navy:       #0B2748;
@@ -48,10 +47,8 @@
   --shadow-lg:     0 12px 32px rgba(0,0,0,0.12);
 }
 
-
 html { font-size: 15px; }
 body { font-family: 'Open Sans', sans-serif; background: var(--surface); color: var(--text); min-height: 100vh; line-height: 1.6; }
-
 
 .topbar {
   background: var(--te-navy);
@@ -107,9 +104,7 @@ body { font-family: 'Open Sans', sans-serif; background: var(--surface); color: 
 }
 .role-tag:hover { background: rgba(0,169,157,0.28); }
 
-
 .layout { display: flex; min-height: calc(100vh - 62px); }
-
 
 .sidebar {
   width: 225px; flex-shrink: 0;
@@ -156,20 +151,16 @@ body { font-family: 'Open Sans', sans-serif; background: var(--surface); color: 
 .sidebar-count.amber { background: var(--amber); }
 .sidebar-count.red { background: #ef4444; }
 
-
 .main { flex: 1; padding: 2rem 2.5rem; max-width: 840px; }
 .page-header { margin-bottom: 1.75rem; animation: fadeUp 0.3s ease both; }
 .page-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--te-teal); margin-bottom: 5px; }
 .page-title { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; color: var(--te-navy); margin-bottom: 5px; letter-spacing: -0.01em; }
 .page-sub { font-size: 13.5px; color: var(--text-2); }
 
-
 @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
 
 .view { display: none; animation: fadeUp 0.25s ease both; }
 .view.active { display: block; }
-
 
 .form-card {
   background: var(--white); border: 1px solid var(--border-light);
@@ -200,7 +191,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
 
-
 .btn-row { display: flex; gap: 10px; margin-top: 1.5rem; align-items: center; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 7px;
@@ -218,7 +208,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .btn-decline { background: var(--white); color: var(--text-2); border: 1.5px solid var(--border); font-size: 13.5px; font-weight: 500; }
 .btn-decline:hover { background: var(--red-light); color: var(--red-text); border-color: #f5b8b8; }
 .btn-sm { padding: 7px 15px; font-size: 12px; }
-
 
 .toast-area { position: fixed; top: 76px; right: 1.5rem; z-index: 999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
 .toast {
@@ -239,7 +228,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .toast-title { font-weight: 700; color: var(--te-navy); margin-bottom: 2px; font-family: 'Montserrat', sans-serif; font-size: 12.5px; }
 .toast-msg { color: var(--text-2); }
 
-
 .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 700; white-space: nowrap; font-family: 'Montserrat', sans-serif; }
 .badge-pending  { background: var(--amber-light);  color: var(--amber-text); }
 .badge-mgr      { background: var(--blue-light);   color: var(--blue-text); }
@@ -247,7 +235,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .badge-approved { background: var(--te-teal-light); color: var(--te-teal-text); }
 .badge-done     { background: var(--green-light);   color: var(--green-text); }
 .badge-declined { background: var(--red-light);     color: var(--red-text); }
-
 
 .req-card {
   background: var(--white); border: 1px solid var(--border-light);
@@ -259,7 +246,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .req-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
 .req-card-title { font-size: 15px; font-weight: 600; color: var(--te-navy); font-family: 'Montserrat', sans-serif; }
 .req-card-meta { font-size: 12.5px; color: var(--text-2); margin-top: 3px; }
-
 
 .progress-wrap { margin: 14px 0; }
 .progress-steps { display: flex; align-items: flex-start; }
@@ -281,7 +267,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .prog-step-label.done { color: var(--te-teal-text); font-weight: 600; }
 .prog-step-label.active { color: var(--te-navy); font-weight: 700; }
 
-
 .detail-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 10px; }
 .detail-item { font-size: 13px; }
 .detail-label { color: var(--text-3); margin-right: 4px; }
@@ -290,7 +275,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .action-spacer { flex: 1; }
 .action-time { font-size: 12px; color: var(--text-3); }
 .quote-block { font-size: 13.5px; color: var(--text-2); background: var(--surface); border-radius: 8px; padding: 10px 14px; margin-top: 4px; line-height: 1.7; border-left: 3px solid var(--te-teal); }
-
 
 .notif-item { display: flex; gap: 14px; padding: 1rem 1.25rem; background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); margin-bottom: 8px; box-shadow: var(--shadow-sm); }
 .notif-item.unread { border-left: 3px solid var(--te-teal); }
@@ -301,7 +285,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .notif-body { font-size: 13px; color: var(--text-2); line-height: 1.5; }
 .notif-time { font-size: 11.5px; color: var(--text-3); margin-top: 4px; }
 
-
 .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
 .stat-card { background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.25rem; box-shadow: var(--shadow-sm); border-top: 3px solid var(--te-teal); }
 .stat-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--te-teal-light); display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
@@ -310,18 +293,15 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .stat-label { font-size: 12.5px; color: var(--text-2); font-weight: 600; font-family: 'Montserrat', sans-serif; }
 .stat-sub { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
 
-
 .report-table { width: 100%; border-collapse: collapse; }
 .report-table th { text-align: left; font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--te-navy); padding: 10px 14px; border-bottom: 2px solid var(--te-teal); background: var(--surface); font-family: 'Montserrat', sans-serif; }
 .report-table td { padding: 12px 14px; font-size: 13.5px; border-bottom: 1px solid var(--border-light); color: var(--text); }
 .report-table tr:hover td { background: var(--te-teal-light); }
 .report-table td.muted { color: var(--text-2); }
 
-
 .empty-state { text-align: center; padding: 3rem 2rem; color: var(--text-3); }
 .empty-state svg { width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.4; }
 .empty-state p { font-size: 14px; }
-
 
 .role-switcher { display: none; position: fixed; top: 62px; right: 0; background: var(--white); border: 1px solid var(--border); border-radius: 0 0 0 var(--radius-lg); box-shadow: var(--shadow-lg); z-index: 200; overflow: hidden; animation: fadeUp 0.15s ease both; min-width: 220px; }
 .role-switcher.open { display: block; }
@@ -334,7 +314,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 .role-option-name { font-size: 13.5px; font-weight: 600; color: var(--te-navy); font-family: 'Montserrat', sans-serif; }
 .role-option-role { font-size: 12px; color: var(--text-2); }
 
-
 @media (max-width: 700px) {
   .sidebar { display: none; }
   .main { padding: 1.25rem; }
@@ -345,22 +324,12 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
 </head>
 <body>
 
-
 <header class="topbar">
-  <!-- Trident Energy logomark: geometric trident (3 prongs + crossbar + shaft) -->
-  <svg width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-    <rect x="16" y="17" width="4" height="21" rx="1.5" fill="#00A99D"/>
-    <rect x="16" y="2" width="4" height="14" rx="1" fill="#ffffff"/>
-    <polygon points="18,0 21.5,6 14.5,6" fill="#ffffff"/>
-    <rect x="6.5" y="6" width="3.2" height="11" rx="1" fill="rgba(255,255,255,0.65)"/>
-    <polygon points="8.1,4.5 10.6,9 5.6,9" fill="rgba(255,255,255,0.65)"/>
-    <rect x="26.3" y="6" width="3.2" height="11" rx="1" fill="rgba(255,255,255,0.65)"/>
-    <polygon points="27.9,4.5 30.4,9 25.4,9" fill="rgba(255,255,255,0.65)"/>
-    <rect x="6.5" y="16" width="23" height="2.8" rx="1.4" fill="#00A99D"/>
-  </svg>
-  <div class="logo-wordmark">
-    <span class="logo-wordmark-top">Trident</span>
-    <span class="logo-wordmark-bottom">Energy</span>
+  <!-- Trident Energy wordmark: TRIDENT / teal rule / ENERGY -->
+  <div style="display:flex;flex-direction:column;line-height:1;gap:0;flex-shrink:0;">
+    <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;letter-spacing:0.18em;text-transform:uppercase;color:#ffffff;display:block;">TRIDENT</span>
+    <div style="height:2.5px;background:var(--te-teal);border-radius:1px;margin:3px 0;width:100%;"></div>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.85);display:block;">ENERGY</span>
   </div>
   <div class="topbar-divider"></div>
   <span class="topbar-product">Learning &amp; Development Portal</span>
@@ -380,7 +349,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
   </div>
 </header>
 
-
 <div class="role-switcher" id="role-switcher">
   <div class="role-switcher-header">Switch role</div>
   <button class="role-option current" onclick="switchRole('learner')">
@@ -397,22 +365,18 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
   </button>
 </div>
 
-
 <div class="toast-area" id="toast-area"></div>
-
 
 <div class="layout">
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-brand-strip">
-      <div class="sb-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--te-teal)" stroke-width="2.5" stroke-linecap="round">
-          <line x1="12" y1="2" x2="12" y2="22"/><line x1="7" y1="6" x2="17" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="10"/><line x1="16" y1="2" x2="16" y2="10"/>
-        </svg>
+      <div style="flex:1;">
+        <div style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:0.15em;color:#fff;">TRIDENT</div>
+        <div style="height:1.5px;background:var(--te-teal);margin:2px 0;border-radius:1px;"></div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:8px;letter-spacing:0.22em;color:rgba(255,255,255,0.7);">ENERGY</div>
       </div>
-      <div class="sb-text"><strong>L&amp;D Portal</strong>External course requests</div>
+      <div class="sb-text" style="text-align:right;">External course<br>requests</div>
     </div>
-
 
     <div class="sidebar-section">
       <div class="sidebar-label">My learning</div>
@@ -431,7 +395,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </button>
     </div>
 
-
     <div class="sidebar-section" id="approval-section" style="display:none;">
       <div class="sidebar-label">Approvals</div>
       <button class="sidebar-link" onclick="switchView('manager')" id="nav-manager">
@@ -446,7 +409,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </button>
     </div>
 
-
     <div class="sidebar-section">
       <div class="sidebar-label">Analytics</div>
       <button class="sidebar-link" onclick="switchView('report')" id="nav-report">
@@ -456,9 +418,7 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     </div>
   </nav>
 
-
   <main class="main">
-
 
     <div class="view active" id="view-submit">
       <div class="page-header">
@@ -499,7 +459,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>
     </div>
 
-
     <div class="view" id="view-myrequests">
       <div class="page-header">
         <div class="page-eyebrow">My learning</div>
@@ -513,7 +472,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
         </div>
       </div>
     </div>
-
 
     <div class="view" id="view-manager">
       <div class="page-header">
@@ -529,7 +487,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>
     </div>
 
-
     <div class="view" id="view-hr">
       <div class="page-header">
         <div class="page-eyebrow">Approvals</div>
@@ -544,7 +501,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>
     </div>
 
-
     <div class="view" id="view-notifs">
       <div class="page-header">
         <div class="page-eyebrow">My account</div>
@@ -553,7 +509,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>
       <div id="notif-list"></div>
     </div>
-
 
     <div class="view" id="view-report">
       <div class="page-header">
@@ -594,19 +549,15 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>
     </div>
 
-
   </main>
 </div>
-
 
 <script>
   let currentRole='learner', notifications=[], pendingMgr=false, pendingHR=false, submittedData=null;
   let approvedCount=3, totalCount=4, totalSpend=2340, notifUnread=1;
 
-
   addNotification('Welcome to the L&D Portal','Your account is set up. Submit a new course request to get started.','info','2 days ago');
   renderNotifications();
-
 
   function switchView(id){
     document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
@@ -615,7 +566,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     const nav=document.getElementById('nav-'+id); if(nav)nav.classList.add('active');
     if(id==='notifs'){notifUnread=0;updateNotifBadge();document.querySelectorAll('.notif-dot-indicator').forEach(d=>d.classList.add('read'));}
   }
-
 
   function prefill(){
     document.getElementById('f-course').value='AWS Solutions Architect — Associate';
@@ -627,7 +577,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     document.getElementById('f-justification').value='This certification will support the APAC cloud migration project and aligns with Q3 team upskilling targets. I will be leading the infrastructure workstream and AWS certification is a prerequisite for the project committee.';
     document.getElementById('f-outcome').value='AWS certified by Q3; leading cloud infrastructure workstream';
   }
-
 
   function submitRequest(){
     const d={
@@ -648,7 +597,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     showToast('Request submitted',`Sent to James Okafor for review.`,'success');
     switchView('myrequests');
   }
-
 
   function renderMgrCard(){
     const d=submittedData;
@@ -673,7 +621,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>`;
   }
 
-
   function mgrApprove(){
     const d=submittedData; pendingMgr=false; pendingHR=true;
     document.getElementById('mgr-sidebar-count').style.display='none';
@@ -686,7 +633,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     switchView('hr');
   }
 
-
   function mgrDecline(){
     const d=submittedData; pendingMgr=false;
     document.getElementById('mgr-sidebar-count').style.display='none';
@@ -697,7 +643,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     showToast('Request declined','Contact James Okafor for details.','warn');
     switchView('myrequests');
   }
-
 
   function renderHRCard(){
     const d=submittedData;
@@ -722,7 +667,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>`;
   }
 
-
   function hrApprove(){
     const d=submittedData; pendingHR=false;
     document.getElementById('hr-sidebar-count').style.display='none';
@@ -735,7 +679,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     updateReport(d); switchView('notifs');
   }
 
-
   function hrDecline(){
     const d=submittedData; pendingHR=false;
     document.getElementById('hr-sidebar-count').style.display='none';
@@ -746,7 +689,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     showToast('Declined by HR','Contact Priya Nair for details.','warn');
     switchView('notifs');
   }
-
 
   function renderMyRequests(status){
     const d=submittedData;
@@ -764,7 +706,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>`;
   }
 
-
   function renderProgress(activeStep){
     const steps=['Submitted','Manager','HR','Confirmed'];
     return `<div class="progress-wrap"><div class="progress-steps">${steps.map((s,i)=>`
@@ -776,9 +717,7 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>`).join('')}</div></div>`;
   }
 
-
   function addNotification(title,body,type,time){notifications.unshift({title,body,type,time,read:false});renderNotifications();}
-
 
   function renderNotifications(){
     const list=document.getElementById('notif-list');
@@ -794,16 +733,13 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
       </div>`).join('');
   }
 
-
   function markRead(i){notifications[i].read=true;renderNotifications();}
-
 
   function updateNotifBadge(){
     const b=document.getElementById('topbar-notif-badge'),sc=document.getElementById('notif-sidebar-count');
     if(notifUnread>0){b.style.display='flex';b.textContent=notifUnread;sc.style.display='flex';sc.textContent=notifUnread;}
     else{b.style.display='none';sc.style.display='none';}
   }
-
 
   function updateReport(d){
     document.getElementById('stat-total').textContent=totalCount;
@@ -815,7 +751,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     document.getElementById('report-tbody').insertBefore(row,document.getElementById('report-tbody').firstChild);
   }
 
-
   function showToast(title,msg,type){
     const area=document.getElementById('toast-area'),t=document.createElement('div');
     t.className='toast '+(type==='warn'?'warn':type==='info'?'info':'');
@@ -825,9 +760,7 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     setTimeout(()=>{t.style.animation='slideOut 0.25s ease forwards';setTimeout(()=>t.remove(),260);},4200);
   }
 
-
   function toggleRoleSwitcher(){document.getElementById('role-switcher').classList.toggle('open');}
-
 
   function switchRole(r){
     currentRole=r;
@@ -846,7 +779,6 @@ textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
     else if(r==='hr'){as.style.display='block';switchView('hr');if(pendingHR)document.getElementById('hr-sidebar-count').style.display='flex';}
     showToast('Switched role',`Now viewing as ${ro.n} (${ro.role})`,'info');
   }
-
 
   document.addEventListener('click',function(e){
     const sw=document.getElementById('role-switcher');
